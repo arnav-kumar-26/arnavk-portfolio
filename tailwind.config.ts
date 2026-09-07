@@ -48,7 +48,7 @@ export default {
         button: '5px',
       },
       spacing: {
-        section: '9rem',
+        section: '10rem',
         gutter: '2rem',
       },
       boxShadow: {
