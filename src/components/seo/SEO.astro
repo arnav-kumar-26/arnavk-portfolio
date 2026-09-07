@@ -1,0 +1,31 @@
+---
+import { buildMeta, type SEOProps } from '@/lib/seo';
+
+interface Props extends SEOProps {}
+
+const { title, description, canonical, ogImage, noindex } = Astro.props as Props;
+const meta = buildMeta({ title, description, canonical, ogImage, noindex });
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const url = canonical ?? Astro.url.href;
+const ogUrl = canonical ?? url;
+---
+
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+{meta.canonical && <link rel="canonical" href={meta.canonical} />}
+{!meta.canonical && <link rel="canonical" href={url} />}
+{meta.noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:url" content={ogUrl} />
+<meta property="og:image" content={meta.ogImage.startsWith('http') ? meta.ogImage : `${site}${meta.ogImage}`} />
+<meta property="og:site_name" content={meta.title} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={meta.ogImage.startsWith('http') ? meta.ogImage : `${site}${meta.ogImage}`} />

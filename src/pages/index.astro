@@ -1,10 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { socialLinks } from '../data/social';
+
+const sameAs = socialLinks.map((s) => s.href);
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Arnav',
+  jobTitle: 'Developer',
+  url: Astro.site?.toString() ?? Astro.url.href,
+  sameAs,
+};
 ---
 
 <BaseLayout title="Portfolio — Arnav" description="Portfolio scaffold — BaseLayout + Nav + Footer verified.">
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   <section class="py-section">
     <h1 class="font-display text-hero">Portfolio scaffold</h1>
-    <p class="font-mono text-body text-text-muted max-w-[32ch]">Task 2.2 — BaseLayout with HairlineGrid, SiteNav (link-underline), and SiteFooter (rotate 180deg flex justify-end) verified.</p>
+    <p class="font-mono text-body text-text-muted max-w-[32ch]">Task 2.3 — SEO wired via SEO.astro + Person JSON-LD (sameAs from social.ts) verified.</p>
   </section>
 </BaseLayout>

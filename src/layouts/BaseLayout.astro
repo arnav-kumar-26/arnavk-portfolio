@@ -3,27 +3,28 @@ import '../styles/global.css';
 import HairlineGrid from '../components/ui/HairlineGrid.astro';
 import SiteNav from '../components/nav/SiteNav.astro';
 import SiteFooter from '../components/footer/SiteFooter.astro';
+import SEO from '../components/seo/SEO.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
-const { title = 'Portfolio — Arnav', description = 'Portfolio of Arnav — projects, experience, and writing.' } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.href;
+const { title = 'Portfolio — Arnav', description = 'Portfolio of Arnav — projects, experience, and writing.', ogImage, canonical: canonicalProp, noindex } = Astro.props;
+const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.href);
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <title>{title}</title>
+    <SEO title={title} description={description} canonical={canonical} ogImage={ogImage} noindex={noindex} />
     <!-- Preload above-the-fold fonts (Archivo + IBM Plex Mono); Archivo Black is below-fold and not preloaded per §1.3 -->
     <link rel="preload" href="/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/ibm-plex-mono-variable.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- SEO.astro will be wired in Task 2.3 — head meta currently minimal to avoid drift -->
   </head>
   <body class="bg-background text-text-primary antialiased">
     <HairlineGrid />
