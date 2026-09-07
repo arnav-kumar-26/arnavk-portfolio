@@ -2,7 +2,7 @@
 
 > A fast, static-first developer portfolio. Zero-JS defaults, token-driven design, live GitHub stats as a narrow client exception.
 
-**Live demo:** https://<your-domain>.vercel.app *(placeholder — replace with the production URL once the custom domain lands)*
+**Live demo:** https://arnavk-portfolio.vercel.app/
 
 ---
 
