@@ -1,0 +1,45 @@
+---
+interface Props {
+  name: string;
+  owner?: string;
+}
+
+const { name, owner } = Astro.props as Props;
+const repoPath = owner ? `${owner}/${name}` : name;
+---
+
+<div class="github-stats font-mono text-label text-text-muted" data-github-stats data-name={name} data-owner={owner ?? ''}>
+  <span data-stars>—</span> stars
+  <span class="mx-2" aria-hidden="true">·</span>
+  <span data-commit>—</span>
+  <a data-fallback href={`https://github.com/${repoPath}`} target="_blank" rel="noopener noreferrer" class="link-underline hidden">— see GitHub</a>
+</div>
+
+<script>
+  import { fetchRepoStats } from '@/lib/github';
+
+  const containers = document.querySelectorAll('[data-github-stats]');
+  for (const el of containers) {
+    const name = (el as HTMLElement).dataset.name;
+    const owner = (el as HTMLElement).dataset.owner || undefined;
+    if (!name) continue;
+    const starsEl = el.querySelector('[data-stars]');
+    const commitEl = el.querySelector('[data-commit]');
+    const fallbackEl = el.querySelector('[data-fallback]') as HTMLElement | null;
+    // static skeleton already rendered; fetch client-side only
+    fetchRepoStats(name, owner).then((stats) => {
+      if (!stats) {
+        // graceful fallback — show static link, keep skeleton hidden
+        if (starsEl) starsEl.textContent = '—';
+        if (commitEl) commitEl.textContent = '';
+        if (fallbackEl) fallbackEl.classList.remove('hidden');
+        return;
+      }
+      if (starsEl) starsEl.textContent = String(stats.stars);
+      if (commitEl) {
+        const d = new Date(stats.lastCommitISO);
+        commitEl.textContent = Number.isNaN(d.getTime()) ? stats.lastCommitISO : d.toLocaleDateString();
+      }
+    });
+  }
+</script>
