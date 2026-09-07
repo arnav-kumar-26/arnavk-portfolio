@@ -34,7 +34,7 @@ export default {
       fontSize: {
         hero: ['clamp(3rem, 6vw + 1.5rem, 8.75rem)', { lineHeight: '0.9', letterSpacing: '-0.06em', fontWeight: '500' }],
         h2: ['clamp(2.25rem, 4vw + 1rem, 4.5rem)', { lineHeight: '1', letterSpacing: '-0.04em', fontWeight: '600' }],
-        h3: ['clamp(1.375rem, 1vw + 1.125rem, 1.75rem)', { lineHeight: '1.2', letterSpacing: '-0.035em', fontWeight: '500' }],
+        h3: ['clamp(1.75rem, 1.5vw + 1.375rem, 3rem)', { lineHeight: '1.2', letterSpacing: '-0.035em', fontWeight: '500' }],
         body: ['1.125rem', { lineHeight: '1.6' }],
         label: ['0.6875rem', { lineHeight: '1', letterSpacing: '0.08em', fontWeight: '500' }],
       },
