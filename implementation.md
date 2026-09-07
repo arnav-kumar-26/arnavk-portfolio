@@ -148,12 +148,21 @@
 2. Trigger a test commit and confirm the Vercel build log completes successfully
    end-to-end with no manual intervention.
 ---
-### Task 8.3: Production Smoke Test
-1. On the live deployed URL, manually verify: the GitHub stats fetch resolves (or
-   gracefully falls back), the contact form/mailto path works, sticky-nav and entrance
-   animations fire correctly, and the sitemap is reachable at `/sitemap-index.xml`.
-2. Trigger `ui_ux_pro_max` for a final responsive pass across mobile, tablet, and
-   desktop breakpoints on the live URL specifically (not just local preview).
+### Task 8.3: Local Build & Logic Verification
+1. Run `astro build`, then serve the output with `astro preview`. Against that local
+   server, confirm: `dist/sitemap-index.xml` exists and is well-formed; the homepage's
+   rendered HTML contains a `mailto:` anchor (not a `<form>`) for Contact, matching the
+   empty `PUBLIC_FORMSPREE_ID`; the GitHubStats skeleton is present in the initial HTML
+   alongside its `<script>` tag; and `sticky-nav.ts` / `entrance.ts` appear as bundled
+   `<script>` tags on the homepage.
+2. `fetchRepoStats()`'s network behavior can't be exercised from static files, so verify
+   its logic directly: write a short throwaway script that mocks `fetch` for a success
+   response, a non-2xx failure, and a call with no resolvable `owner`, and assert the
+   function returns the correct `GitHubRepoStats` shape or `null` in each case per
+   `architecture.md` §5.3. Remove the throwaway script once it passes.
+3. Trigger `ui_ux_pro_max` for the responsive pass across mobile, tablet, and desktop
+   breakpoints against the **local preview server**, not the live URL — it's the exact
+   build that ships to Vercel, so there's no need to wait on deployment for this.
 ---
 ### Task 8.4: Final Launch Sign-off
 1. Confirm every task across Phases 1–8 has a corresponding git commit in the
