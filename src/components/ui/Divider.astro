@@ -1,0 +1,9 @@
+---
+interface Props {
+  variant?: 'default' | 'inverse';
+}
+
+const { variant = 'default' } = Astro.props;
+---
+
+<hr class={variant === 'inverse' ? 'border-t border-border-hairline-inverse' : 'border-t border-border-hairline'} />

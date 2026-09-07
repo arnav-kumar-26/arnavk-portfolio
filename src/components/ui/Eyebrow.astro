@@ -1,0 +1,12 @@
+---
+interface Props {
+  as?: 'span' | 'p' | 'h2' | 'h3' | 'div';
+  label: string;
+}
+
+const { as: Tag = 'span', label } = Astro.props;
+---
+
+<Tag class="font-mono text-label uppercase tracking-widest text-text-primary">
+  [{label}]
+</Tag>
