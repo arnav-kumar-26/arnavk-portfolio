@@ -145,12 +145,6 @@ button:focus-visible .arrow-swap .arrow--in {
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('/fonts/geist-900.woff2') format('woff2');
-  font-weight: 900;
-  font-display: swap;
-}
-@font-face {
   font-family: 'PT Mono';
   src: url('/fonts/pt-mono-400.woff2') format('woff2');
   font-weight: 400;

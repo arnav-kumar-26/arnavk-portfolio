@@ -29,7 +29,7 @@ export default {
       fontFamily: {
         display: ['Geist', 'Arial', 'sans-serif'],
         mono: ['"PT Mono"', 'sans-serif'],
-        namemark: ['"Archivo Black"', 'sans-serif'],
+        namemark: ['Geist', 'Arial', 'sans-serif'],
       },
       fontSize: {
         hero: ['clamp(3rem, 6vw + 1.5rem, 8.75rem)', { lineHeight: '0.9', letterSpacing: '-0.02em', fontWeight: '500' }],
