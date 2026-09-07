@@ -1,0 +1,49 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+
+interface PostFrontmatter {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  tags: string[];
+}
+
+interface Props {
+  frontmatter: PostFrontmatter;
+}
+
+const { frontmatter } = Astro.props as Props;
+const toISO = (date: Date) => date.toISOString();
+const toDay = (date: Date) => date.toISOString().slice(0, 10);
+
+const blogPosting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: frontmatter.title,
+  description: frontmatter.description,
+  datePublished: toISO(frontmatter.publishDate),
+  ...(frontmatter.updatedDate ? { dateModified: toISO(frontmatter.updatedDate) } : {}),
+  author: { '@type': 'Person', name: 'Arnav' },
+};
+---
+
+<BaseLayout title={`${frontmatter.title} — Arnav`} description={frontmatter.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPosting)} />
+  <article aria-labelledby="post-heading" class="py-section">
+    <a href="/writing" class="link-underline font-mono text-label uppercase tracking-widest text-text-muted w-fit">← All writing</a>
+    <div class="mt-6 mb-8 space-y-4">
+      <Eyebrow label="WRITING" />
+      <h1 id="post-heading" class="font-display text-h2 tracking-tightest">{frontmatter.title}</h1>
+      <p class="font-mono text-body text-text-muted max-w-[32ch]">{frontmatter.description}</p>
+      <p class="font-mono text-label uppercase tracking-widest text-text-muted">
+        {toDay(frontmatter.publishDate)}
+        {frontmatter.tags.length > 0 && ` — ${frontmatter.tags.join(' / ')}`}
+      </p>
+    </div>
+    <div class="post-body max-w-[32ch] space-y-4 font-mono text-body text-text-muted">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
