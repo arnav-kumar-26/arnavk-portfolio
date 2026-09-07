@@ -28,7 +28,7 @@ export default {
       },
       fontFamily: {
         display: ['Geist', 'Arial', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        mono: ['"PT Mono"', 'sans-serif'],
         namemark: ['"Archivo Black"', 'sans-serif'],
       },
       fontSize: {
