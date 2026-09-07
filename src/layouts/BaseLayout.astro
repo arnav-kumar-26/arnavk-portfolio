@@ -22,9 +22,11 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <SEO title={title} description={description} canonical={canonical} ogImage={ogImage} noindex={noindex} />
-    <!-- Preload above-the-fold fonts (Archivo + IBM Plex Mono); Archivo Black is below-fold and not preloaded per §1.3 -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Preload above-the-fold fonts (Archivo variable + IBM Plex Mono 400/500); Archivo Black is below-fold and not preloaded per §1.3 -->
     <link rel="preload" href="/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/ibm-plex-mono-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="bg-background text-text-primary antialiased">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-label focus:uppercase">Skip to content</a>

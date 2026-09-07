@@ -2,11 +2,13 @@
 interface Props {
   as?: 'span' | 'p' | 'h2' | 'h3' | 'div';
   label: string;
+  tone?: 'primary' | 'inverse';
 }
 
-const { as: Tag = 'span', label } = Astro.props;
+const { as: Tag = 'span', label, tone = 'primary' } = Astro.props;
+const color = tone === 'inverse' ? 'text-text-inverse' : 'text-text-primary';
 ---
 
-<Tag class="font-mono text-label uppercase tracking-widest text-text-primary">
+<Tag class={`font-mono text-label uppercase tracking-widest ${color}`}>
   [{label}]
 </Tag>
