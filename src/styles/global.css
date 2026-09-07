@@ -113,6 +113,13 @@ button:focus-visible .arrow-swap .arrow--in {
 .reveal-group > *:nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
 .no-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
 
+.project-card,
+.project-card .layer-front {
+  transition: transform var(--dur-fast) ease-out;
+}
+.project-card:hover { transform: translateY(-6px); }
+.project-card:hover .layer-front { transform: translate(6px, -6px); }
+
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/archivo-variable.woff2') format('woff2-variations');

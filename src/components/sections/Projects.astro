@@ -1,0 +1,15 @@
+---
+import { projects } from '../../data/projects';
+import ProjectCard from './ProjectCard.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+---
+
+<section id="projects" class="py-section border-t border-border-hairline">
+  <div class="mb-8 flex items-baseline gap-4">
+    <Eyebrow label="WORK" />
+    <h2 class="font-display text-h2 tracking-tightest">Selected Works</h2>
+  </div>
+  <div class="reveal-group grid gap-6 md:grid-cols-2">
+    {projects.map((p) => <ProjectCard project={p} />)}
+  </div>
+</section>
