@@ -24,6 +24,26 @@
   }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: theme('colors.background.DEFAULT');
+    color: theme('colors.text.primary');
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  ::selection {
+    background-color: theme('colors.text.primary');
+    color: theme('colors.text.inverse');
+  }
+}
+
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
