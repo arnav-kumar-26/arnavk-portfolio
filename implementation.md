@@ -127,18 +127,37 @@
 2. Trigger `ui_ux_pro_max` to remediate any flagged CLS, LCP, or accessibility regressions before proceeding, re-running the audit until all four Lighthouse categories score in the green range.
 ---
 ## Phase 8: Deployment & Launch
-### Task 8.1: Cloudflare Pages Configuration
-1. Create `public/_headers` with long `Cache-Control: immutable` rules for hashed asset filenames and short/no-cache rules for HTML documents, and add `wrangler.toml` per `architecture.md` §2.
-2. Confirm `astro.config.mjs` remains set to `output: 'static'` and that no server-only APIs have been introduced anywhere in the codebase.
+### Task 8.1: Vercel Configuration
+1. Create `vercel.json` at the project root with a `headers` array: long
+   `Cache-Control: public, max-age=31536000, immutable` on the hashed asset path
+   Astro's static build emits (`/_astro/(.*)`), and a short/no-cache rule on HTML
+   documents. Do not create `wrangler.toml` or `public/_headers` — those are
+   Cloudflare Pages-specific and unused on this platform.
+2. Confirm `astro.config.mjs` remains set to `output: 'static'` with **no adapter**.
+   A pure static site needs no `@astrojs/vercel` adapter — only add one later, via an
+   explicit ADR, if you start using a Vercel-specific feature like Image Optimization
+   or Web Analytics. Confirm no server-only APIs have been introduced anywhere in the
+   codebase.
 ---
 ### Task 8.2: CI / Auto-Deploy Verification
-1. Connect the GitHub repository to a Cloudflare Pages project (or confirm the existing connection) so every push to the main branch triggers an automatic build and deploy.
-2. Trigger a test commit and confirm the Cloudflare Pages build log completes successfully end-to-end with no manual intervention.
+1. Import the GitHub repository into a Vercel project (dashboard "Add New Project" or
+   `vercel link` via CLI), confirming Vercel's Astro framework preset correctly detects
+   the build command (`astro build`) and output directory (`dist`), so every push to
+   `main` triggers a production deployment and every pull request gets a preview
+   deployment.
+2. Trigger a test commit and confirm the Vercel build log completes successfully
+   end-to-end with no manual intervention.
 ---
 ### Task 8.3: Production Smoke Test
-1. On the live deployed URL, manually verify: the GitHub stats fetch resolves (or gracefully falls back), the contact form/mailto path works, sticky-nav and entrance animations fire correctly, and the sitemap is reachable at `/sitemap-index.xml`.
-2. Trigger `ui_ux_pro_max` for a final responsive pass across mobile, tablet, and desktop breakpoints on the live URL specifically (not just local preview).
+1. On the live deployed URL, manually verify: the GitHub stats fetch resolves (or
+   gracefully falls back), the contact form/mailto path works, sticky-nav and entrance
+   animations fire correctly, and the sitemap is reachable at `/sitemap-index.xml`.
+2. Trigger `ui_ux_pro_max` for a final responsive pass across mobile, tablet, and
+   desktop breakpoints on the live URL specifically (not just local preview).
 ---
 ### Task 8.4: Final Launch Sign-off
-1. Confirm every task across Phases 1–8 has a corresponding git commit in the repository history, and that `npx tsc --noEmit` passes cleanly on the final `main` branch state.
-2. Once confirmed, output `"GOAL COMPLETE"` per the execution rules at the top of this document.
+1. Confirm every task across Phases 1–8 has a corresponding git commit in the
+   repository history, and that `npx tsc --noEmit` passes cleanly on the final `main`
+   branch state.
+2. Once confirmed, output `"GOAL COMPLETE"` per the execution rules at the top of this
+   document.
