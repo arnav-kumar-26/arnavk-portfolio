@@ -1,0 +1,19 @@
+---
+import { experience } from '../../data/experience';
+import ExperienceRow from './ExperienceRow.astro';
+import Eyebrow from '../ui/Eyebrow.astro';
+import Divider from '../ui/Divider.astro';
+
+const sorted = [...experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
+---
+
+<section id="experience" class="py-section border-t border-border-hairline">
+  <div class="mb-8 flex items-baseline gap-4">
+    <Eyebrow label="EXPERIENCE" />
+    <h2 class="reveal font-display text-h2 tracking-tightest">Experience</h2>
+  </div>
+  <div class="reveal-group divide-y divide-border-hairline">
+    {sorted.map((e) => <ExperienceRow entry={e} />)}
+  </div>
+  <Divider />
+</section>

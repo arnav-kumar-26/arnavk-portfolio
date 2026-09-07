@@ -1,0 +1,37 @@
+---
+import type { ExperienceEntry } from '@/types';
+
+interface Props {
+  entry: ExperienceEntry;
+}
+
+const { entry } = Astro.props as Props;
+const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present` : `${entry.startDate} — ${entry.endDate}`;
+---
+
+<div class="exp-row grid gap-4 py-6">
+  <div class="exp-label">
+    <span class="font-mono text-label uppercase tracking-widest text-text-muted">{dateRange}</span>
+    {entry.location && <span class="font-mono text-label text-text-muted block">{entry.location}</span>}
+  </div>
+  <div class="exp-content max-w-[32ch] space-y-2">
+    <h3 class="font-display text-h3">{entry.company} — {entry.role}</h3>
+    <ul class="list-disc list-inside space-y-1 font-mono text-body text-text-muted" role="list">
+      {entry.impactBullets.map((b) => <li>{b}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .exp-row {
+    grid-template-columns: var(--label-col-width) minmax(0, 1fr);
+  }
+  .exp-content {
+    max-width: var(--content-col-max);
+  }
+  @media (max-width: 640px) {
+    .exp-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
