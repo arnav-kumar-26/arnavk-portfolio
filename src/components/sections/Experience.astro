@@ -7,10 +7,10 @@ import Divider from '../ui/Divider.astro';
 const sorted = [...experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
 ---
 
-<section id="experience" class="py-section border-t border-border-hairline">
+<section id="experience" aria-labelledby="experience-heading" class="py-section border-t border-border-hairline">
   <div class="mb-8 flex items-baseline gap-4">
     <Eyebrow label="EXPERIENCE" />
-    <h2 class="reveal font-display text-h2 tracking-tightest">Experience</h2>
+    <h2 id="experience-heading" class="reveal font-display text-h2 tracking-tightest">Experience</h2>
   </div>
   <div class="reveal-group divide-y divide-border-hairline">
     {sorted.map((e) => <ExperienceRow entry={e} />)}
