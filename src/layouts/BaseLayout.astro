@@ -33,6 +33,9 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
       <slot />
     </main>
     <SiteFooter />
+    <script>
+      import '../scripts/entrance.ts';
+    </script>
   </body>
 </html>
 
