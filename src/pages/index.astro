@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { socialLinks } from '../data/social';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Experience from '../components/sections/Experience.astro';
+import Projects from '../components/sections/Projects.astro';
+import Skills from '../components/sections/Skills.astro';
+import Contact from '../components/sections/Contact.astro';
 
 const sameAs = socialLinks.map((s) => s.href);
 const personSchema = {
@@ -13,10 +19,12 @@ const personSchema = {
 };
 ---
 
-<BaseLayout title="Portfolio — Arnav" description="Portfolio scaffold — BaseLayout + Nav + Footer verified.">
+<BaseLayout title="Portfolio — Arnav" description="Portfolio — developer, Astro static-first, FastAPI + Expo, available for internships.">
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-  <section class="py-section">
-    <h1 class="font-display text-hero">Portfolio scaffold</h1>
-    <p class="font-mono text-body text-text-muted max-w-[32ch]">Task 2.3 — SEO wired via SEO.astro + Person JSON-LD (sameAs from social.ts) verified.</p>
-  </section>
+  <Hero />
+  <About />
+  <Experience />
+  <Projects />
+  <Skills />
+  <Contact />
 </BaseLayout>
