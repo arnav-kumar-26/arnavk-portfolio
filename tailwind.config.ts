@@ -6,23 +6,24 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#EAE8E2',
-          nav: '#EAE8E2',
-          dark: '#0A0A09',
+          DEFAULT: '#e6e6e6',
+          nav: '#e6e6e6',
+          dark: '#0f0f0f',
         },
         text: {
-          primary: '#111110',
-          muted: '#83817B',
-          inverse: '#F5F4EF',
-          'inverse-muted': '#9B9790',
+          primary: '#1e1e1f',
+          muted: '#7f7f80',
+          inverse: '#f2f2f2',
+          'inverse-muted': '#a9a9aa',
         },
         accent: {
-          DEFAULT: '#111110',
+          DEFAULT: '#1e1e1f',
+          hover: '#545455',
           warm: '#C97C4B',
           'warm-light': '#E3A26B',
         },
         border: {
-          hairline: '#D3D1C9',
+          hairline: '#bfbfbf',
           'hairline-inverse': 'rgba(255,255,255,0.12)',
         },
       },
