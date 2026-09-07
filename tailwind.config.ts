@@ -55,6 +55,7 @@ export default {
       letterSpacing: {
         tightest: '-0.02em',
         widest: '0.08em',
+        body: '-0.03em',
       },
       transitionTimingFunction: {
         signature: 'cubic-bezier(0.16, 1, 0.3, 1)',

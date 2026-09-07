@@ -33,6 +33,7 @@
   body {
     background-color: theme('colors.background.DEFAULT');
     color: theme('colors.text.primary');
+    @apply tracking-body;
   }
   :focus-visible {
     outline: 2px solid currentColor;
