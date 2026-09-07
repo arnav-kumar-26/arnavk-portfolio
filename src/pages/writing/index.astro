@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const formatDate = (date: Date) => date.toISOString().slice(0, 10);
+---
+
+<BaseLayout title="Writing — Arnav" description="Essays and build notes on static-first Astro sites, token-driven design systems, and shipping to the edge.">
+  <section aria-labelledby="writing-heading" class="py-section">
+    <div class="mb-8 flex items-baseline gap-4">
+      <Eyebrow label="WRITING" />
+      <h1 id="writing-heading" class="font-display text-h2 tracking-tightest">Writing</h1>
+    </div>
+    {posts.length === 0 ? (
+      <p class="font-mono text-body text-text-muted max-w-[32ch]">No posts yet — check back soon.</p>
+    ) : (
+      <ul class="divide-y divide-border-hairline border-t border-border-hairline">
+        {posts.map((post) => (
+          <li class="post-row grid gap-2 py-6">
+            <span class="font-mono text-label uppercase tracking-widest text-text-muted">{formatDate(post.data.publishDate)}</span>
+            <div class="space-y-2">
+              <a href={`/writing/${post.slug}`} class="link-underline font-display text-h3 w-fit">{post.data.title}</a>
+              <p class="font-mono text-body text-text-muted max-w-[32ch]">{post.data.description}</p>
+              {post.data.tags.length > 0 && (
+                <p class="font-mono text-label uppercase tracking-widest text-text-muted">{post.data.tags.join(' / ')}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .post-row {
+    grid-template-columns: var(--label-col-width) minmax(0, 1fr);
+  }
+  @media (max-width: 640px) {
+    .post-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
