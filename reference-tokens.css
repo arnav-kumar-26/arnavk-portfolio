@@ -1,0 +1,162 @@
+/*
+  reference-tokens.css
+  ---------------------------------------------------------------------------
+  Curated excerpt from the reference site's exported stylesheet
+  (original file: reference-styles.txt, ~114KB, mostly a normalize/reset
+  bundle with no design-system content).
+
+  This file contains ONLY the rules that TASK.md Tasks 2, 3, 7, 8, 9, 11,
+  12, 13, and 14 cite as evidence. It is not meant to be built or imported —
+  it exists purely so the /goal agent (and anyone else) can verify every
+  hex/value/token claim in TASK.md against a real source instead of taking
+  it on trust. Cross-reference: each block below is quoted verbatim from
+  the original export, with only the normalize/reset duplicate rules for
+  the same selectors removed.
+  ---------------------------------------------------------------------------
+*/
+
+:root {
+  --brand-colors--gray: #e6e6e6;
+  --brand-colors--black: #0f0f0f;
+  --brand-colors--white: white;
+
+  --typography-color--neutral-100: #f2f2f2;
+  --typography-color--neutral-200: #bfbfbf;
+  --typography-color--neutral-300: #a9a9aa;
+  --typography-color--neutral-400: #949495;
+  --typography-color--neutral-500: #7f7f80;
+  --typography-color--neutral-600: #69696b;
+  --typography-color--neutral-700: #545455;
+  --typography-color--neutral-800: #29292b;
+  --typography-color--neutral-900: #1e1e1f;
+  --typography-color--neutral-950: #0f0f0f;
+
+  --primary: Geist, Arial, sans-serif;
+  --secondary: "PT Mono", sans-serif;
+
+  --font-size--base: 1.125rem;
+  --font-size--xl: 1.75rem;
+  --font-size--2xl: 2rem;
+  --font-size--3xl: 2.5rem;
+  --font-size--4xl: 3rem;
+  --font-size--5xl: 3.5rem;
+
+  --site-padding--desktop: 3rem;
+  --site-padding--tablet: 2rem;
+  --site-padding--mobile: 1rem;
+}
+
+/* Page background + body text color — used for Task 11 background.DEFAULT / text.primary */
+body {
+  background-color: var(--brand-colors--gray);   /* #e6e6e6 */
+  font-family: var(--primary);
+  color: var(--typography-color--neutral-900);   /* #1e1e1f */
+  letter-spacing: -.03em;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: clamp(var(--font-size--base), 1.2vw, var(--font-size--base));
+}
+
+/* Heading color + sizes + tracking — used for Tasks 5, 8, 9, 10, 11 */
+h1 { color: var(--typography-color--neutral-950); letter-spacing: -.06em; font-size: 4rem;   font-weight: 500; line-height: 1.2; }
+h2 { color: var(--typography-color--neutral-950); letter-spacing: -.04em; font-size: 3rem;   font-weight: 500; line-height: 1.1; }
+h3 { color: var(--typography-color--neutral-950); letter-spacing: -.06em; font-size: 2.5rem; font-weight: 500; line-height: 1.1; }
+h4 { color: var(--typography-color--neutral-950); letter-spacing: -.06em; font-size: 1.5rem; font-weight: 500; line-height: 1.2; }
+h5 { color: var(--typography-color--neutral-950); font-size: 1.25rem; font-weight: 500; line-height: 1.2; }
+h6 { color: var(--typography-color--neutral-950); font-size: 1rem;    font-weight: 500; line-height: 1.2; }
+
+/* Nav — transparent by default (no static solid-state rule exported) — used for Task 11 background.nav */
+.navbar {
+  background-color: #0000;
+  width: 100%;
+  position: fixed;
+  inset: 0% 0% auto;
+}
+
+/* Mobile nav dropdown panel background */
+.nav-content {
+  background-color: var(--typography-color--neutral-100); /* #f2f2f2 */
+  display: none;
+}
+
+.nav-logo.neutral-100 {
+  color: var(--typography-color--neutral-100); /* #f2f2f2 */
+}
+
+/* Dark section — used for Task 11 background.dark */
+.footer {
+  background-color: var(--typography-color--neutral-950); /* #0f0f0f */
+  padding-top: 8rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+/* Light text on dark section — used for Task 11 text.inverse */
+.footer-link {
+  color: var(--typography-color--neutral-100); /* #f2f2f2 */
+}
+
+.button-menu {
+  background-color: var(--typography-color--neutral-950); /* #0f0f0f */
+}
+
+/* Primary button fill/hover/radius — used for Tasks 11, 12, 13 */
+.button {
+  background-color: var(--typography-color--neutral-900);  /* #1e1e1f — accent.DEFAULT */
+  color: var(--typography-color--neutral-100);              /* #f2f2f2 */
+  letter-spacing: 0;
+  border-radius: 5px;
+  padding: .75rem;
+  line-height: 1;
+  transition: background-color .2s cubic-bezier(.215, .61, .355, 1);
+}
+.button:hover {
+  background-color: var(--typography-color--neutral-700);  /* #545455 — accent.hover */
+}
+
+/* Secondary form-submit button — separate component, different radius (4px), same hover pattern */
+.form-submit-button {
+  background-color: var(--typography-color--neutral-900);
+  color: var(--typography-color--neutral-100);
+  border-radius: 4px;
+  padding: .75rem;
+  transition: opacity .2s;
+}
+.form-submit-button:hover {
+  background-color: var(--typography-color--neutral-700);
+}
+
+/* Hairline / divider color — used for Task 11 border.hairline */
+.divider {
+  background-color: var(--typography-color--neutral-200); /* #bfbfbf */
+  width: 100%;
+  height: 1px;
+}
+.circle {
+  border: 1px solid var(--typography-color--neutral-200); /* #bfbfbf */
+}
+
+/* Mono/label text — for reference only, not directly mapped to a token in TASK.md */
+.mono-text {
+  font-family: var(--secondary);
+  color: var(--typography-color--neutral-800); /* #29292b */
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Interactive dim states — informed the (inferred) text.muted / text.inverse-muted picks */
+.email-link:hover {
+  color: var(--typography-color--neutral-600); /* #69696b */
+}
+.nav-link-wrap.w--current {
+  color: #29292b;
+}
+
+/*
+  Note on scope: every non-neutral hex in the original 114KB export
+  (#3898ec, #ea384c, #758696, etc.) is unused Webflow platform boilerplate —
+  default link-blue, default error-red, form-focus colors — none of it is
+  applied to any real content in the site. The reference's actual palette
+  is monochrome; there is no accent hue to compare against, which is why
+  TASK.md leaves accent.warm / accent.warm-light untouched.
+*/
