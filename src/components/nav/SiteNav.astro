@@ -1,0 +1,52 @@
+---
+import NavLink from './NavLink.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const defaultNav: NavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Writing', href: '/writing' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const { items = defaultNav } = Astro.props as { items?: NavItem[] };
+---
+
+<nav class="site-nav sticky top-0 z-40 flex w-full items-center justify-between bg-transparent px-6 py-4 border-b border-transparent transition-colors duration-350 ease-signature md:px-8" aria-label="Primary">
+  <a href="/" class="font-display text-h3 tracking-tightest text-text-primary focus-visible:outline-none">
+    Arnav
+  </a>
+  <div class="flex items-center gap-4 md:gap-6">
+    {
+      items.map((item, i) => (
+        <>
+          <NavLink label={item.label} href={item.href} />
+          {i < items.length - 1 && <span class="font-mono text-label text-text-muted" aria-hidden="true">/</span>}
+        </>
+      ))
+    }
+    <span class="hidden md:inline-flex h-2 w-2 rounded-pill border border-text-primary" aria-hidden="true"></span>
+  </div>
+</nav>
+
+<script>
+  // Sticky-nav scroll listener — toggles .is-scrolled for opaque fill + hairline border
+  // This script is 🟡 interactive but isolated to SiteNav; full behavior refined in Task 5.2
+  const nav = document.querySelector('.site-nav');
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
+
+<style>
+  .site-nav.is-scrolled {
+    background: theme('colors.background.nav');
+    border-bottom-color: theme('colors.border.hairline');
+  }
+</style>

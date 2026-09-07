@@ -1,17 +1,10 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio — Scaffold</title>
-  </head>
-  <body class="bg-background text-text-primary">
-    <main>
-      <h1 class="font-display text-hero">Portfolio scaffold</h1>
-      <p class="font-mono text-body text-text-muted">Task 1.1 — Astro static scaffold verified.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout title="Portfolio — Arnav" description="Portfolio scaffold — BaseLayout + Nav + Footer verified.">
+  <section class="py-section">
+    <h1 class="font-display text-hero">Portfolio scaffold</h1>
+    <p class="font-mono text-body text-text-muted max-w-[32ch]">Task 2.2 — BaseLayout with HairlineGrid, SiteNav (link-underline), and SiteFooter (rotate 180deg flex justify-end) verified.</p>
+  </section>
+</BaseLayout>
