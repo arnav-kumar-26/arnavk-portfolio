@@ -20,7 +20,7 @@ const { items = defaultNav } = Astro.props as { items?: NavItem[] };
   <a href="/" class="font-display text-h3 tracking-tightest text-text-primary focus-visible:outline-none">
     Arnav
   </a>
-  <div class="flex flex-wrap items-center justify-end gap-4 md:gap-6">
+  <div class="flex min-w-0 flex-wrap items-center justify-end gap-4 md:gap-6">
     {
       items.map((item, i) => (
         <>
