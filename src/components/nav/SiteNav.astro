@@ -34,14 +34,7 @@ const { items = defaultNav } = Astro.props as { items?: NavItem[] };
 </nav>
 
 <script>
-  // Sticky-nav scroll listener — toggles .is-scrolled for opaque fill + hairline border
-  // This script is 🟡 interactive but isolated to SiteNav; full behavior refined in Task 5.2
-  const nav = document.querySelector('.site-nav');
-  if (nav) {
-    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
+  import '../../scripts/sticky-nav.ts';
 </script>
 
 <style>
