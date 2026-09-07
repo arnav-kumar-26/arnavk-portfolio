@@ -45,6 +45,7 @@ export default {
       borderRadius: {
         none: '0px',
         pill: '9999px',
+        button: '5px',
       },
       spacing: {
         section: '9rem',

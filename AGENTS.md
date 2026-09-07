@@ -20,6 +20,7 @@ Font deps: `@fontsource/geist-sans` (Geist 400/500/600/700/900 self-hosted from 
    src="/...">` for an asset under `src/assets/` is a build-blocking review failure.
 2. `border-radius` is `0` everywhere except pill buttons (`rounded-pill`, i.e. `9999px`).
    No other radius value may be introduced.
+   Exception: button radius `5px` (`rounded-button`), added 2026-09-08, rationale: match reference button treatment (`.button { border-radius: 5px }` in `reference-tokens.css`).
 3. No `box-shadow` anywhere. Depth comes only from the offset-stacking pattern already
    defined for `.project-card` — do not add drop shadows to "improve" hover states.
 4. No new accent hues. The only interactive color is black-on-cream
