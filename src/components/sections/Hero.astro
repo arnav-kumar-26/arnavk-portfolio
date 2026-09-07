@@ -1,0 +1,29 @@
+---
+import Button from '../ui/Button.astro';
+import { Image } from 'astro:assets';
+import heroPortrait from '../../assets/hero-portrait.svg';
+---
+
+<section id="hero" class="py-section grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+  <div class="space-y-6">
+    <h1 class="reveal-hero font-display text-hero leading-[0.9] tracking-tightest">Arnav</h1>
+    <p class="reveal font-mono text-body text-text-muted max-w-[32ch]" style="animation-delay: calc(var(--stagger) * 1)">
+      Developer — building static-first, token-driven interfaces. Currently available for internships in India.
+    </p>
+    <div class="no-reveal flex flex-wrap gap-3 pt-2">
+      <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
+      <Button href="#contact" variant="outline">Contact</Button>
+    </div>
+  </div>
+  <div class="reveal justify-self-center md:justify-self-end" style="animation-delay: calc(var(--stagger) * 2)">
+    <Image
+      src={heroPortrait}
+      alt="Portrait of Arnav"
+      width={480}
+      height={480}
+      loading="eager"
+      fetchpriority="high"
+      class="h-auto w-full max-w-[420px] object-cover"
+    />
+  </div>
+</section>
