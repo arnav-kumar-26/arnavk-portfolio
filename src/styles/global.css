@@ -117,8 +117,8 @@ button:focus-visible .arrow-swap .arrow--in {
 .project-card .layer-front {
   transition: transform var(--dur-fast) ease-out;
 }
-.project-card:hover { transform: translateY(-6px); }
-.project-card:hover .layer-front { transform: translate(6px, -6px); }
+.project-card:hover, .project-card:focus-within { transform: translateY(-6px); }
+.project-card:hover .layer-front, .project-card:focus-within .layer-front { transform: translate(6px, -6px); }
 
 @font-face {
   font-family: 'Archivo';
