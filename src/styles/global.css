@@ -121,9 +121,33 @@ button:focus-visible .arrow-swap .arrow--in {
 .project-card:hover .layer-front, .project-card:focus-within .layer-front { transform: translate(6px, -6px); }
 
 @font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
-  font-weight: 400 700;
+  font-family: 'Geist';
+  src: url('/fonts/geist-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-600.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-900.woff2') format('woff2');
+  font-weight: 900;
   font-display: swap;
 }
 @font-face {

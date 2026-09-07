@@ -27,7 +27,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Archivo', 'ui-sans-serif', 'sans-serif'],
+        display: ['Geist', 'Arial', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
         namemark: ['"Archivo Black"', 'sans-serif'],
       },

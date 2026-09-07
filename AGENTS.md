@@ -6,6 +6,8 @@ Cloudflare Pages, Astro Content Collections (`@astrojs/mdx` required for `.mdx` 
 `@astrojs/sitemap`, astro:assets, vanilla JS. No React/Vue/Svelte/Solid. No client-side
 state library. No CSS-in-JS.
 
+Font deps: `@fontsource/geist-sans` (Geist 400/500/600/700/900 self-hosted from its `files/` output).
+
 ## Naming conventions
 - Components: PascalCase, `.astro` extension — `ProjectCard.astro`
 - Routes/pages: kebab-case matching the URL — `src/pages/writing/index.astro`
