@@ -6,14 +6,12 @@ const hasFormspree = Boolean(formspreeId);
 const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefined;
 ---
 
-<section id="contact" aria-labelledby="contact-heading" class="py-section bg-background-dark text-text-inverse -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12">
-  <div class="mx-auto max-w-7xl">
-    <div class="mb-8">
-      <h2 id="contact-heading" class="reveal font-display text-h2 tracking-tightest text-text-inverse">Let's Connect</h2>
-    </div>
+<section id="contact" aria-labelledby="contact-heading" class="py-section contact-warm text-text-inverse -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12">
+  <div class="mx-auto max-w-7xl grid gap-8 md:grid-cols-2 md:items-start">
+    <h2 id="contact-heading" class="reveal font-display text-h2 tracking-tightest text-text-inverse">Let's Connect</h2>
 
     {hasFormspree ? (
-      <form action={action} method="POST" class="max-w-[32ch] space-y-4">
+      <form action={action} method="POST" class="space-y-4">
         <div class="space-y-1">
           <label for="contact-name" class="font-mono text-label uppercase tracking-widest text-text-inverse-muted">Name</label>
           <input id="contact-name" name="name" type="text" required autocomplete="name" class="w-full border border-border-hairline-inverse bg-transparent px-3 py-2 font-mono text-body text-text-inverse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse" />
@@ -52,9 +50,18 @@ const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefine
       </script>
     ) : (
       <div class="space-y-4">
-        <p class="font-display text-body text-text-inverse-muted max-w-[32ch]">Available for internships and collaborations. Reach out directly via email.</p>
-        <Button href="mailto:hello@example.com">Email Arnav</Button>
+        <p class="font-display text-body text-text-inverse-muted">Available for internships and collaborations. Reach out directly via email.</p>
+        <a href="mailto:hello@example.com" class="link-underline font-mono text-body uppercase tracking-widest text-text-inverse w-fit">Contact ↗</a>
       </div>
     )}
   </div>
 </section>
+
+<style>
+  /* Interim photographic placeholder (reference has a full-bleed photo here):
+     warm wash over the dark base; swap background-image for the photo when available. */
+  .contact-warm {
+    background-color: theme('colors.background.dark');
+    background-image: linear-gradient(120deg, color-mix(in srgb, theme('colors.accent.warm') 45%, transparent), transparent 65%);
+  }
+</style>
