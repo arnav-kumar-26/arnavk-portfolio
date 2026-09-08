@@ -18,14 +18,14 @@ const coverMap: Record<string, typeof miraCover> = {
 const cover = coverMap[project.coverImage] ?? miraCover;
 ---
 
-<article class="project-card border border-border-hairline bg-background p-4">
+<article class="project-card border border-border-hairline bg-background p-6">
   <div class="relative">
     <div class="layer-back absolute inset-0 translate-x-2 translate-y-2 bg-accent"></div>
     <div class="layer-front relative bg-background">
       <Image src={cover} alt={`${project.title} cover`} width={800} height={450} loading="lazy" class="h-auto w-full object-cover" />
     </div>
   </div>
-  <div class="pt-4 space-y-2">
+  <div class="pt-6 space-y-3">
     <h3 class="font-display text-h3">{project.title}</h3>
     <p class="font-display text-body text-text-muted">{project.summary}</p>
     <p class="font-display text-body text-text-muted">{project.description}</p>
@@ -37,7 +37,7 @@ const cover = coverMap[project.coverImage] ?? miraCover;
         src={project.demoUrl}
         title={`${project.title} demo`}
         loading="lazy"
-        class="mt-3 h-64 w-full border border-border-hairline"
+        class="mt-3 h-80 w-full border border-border-hairline"
         sandbox="allow-scripts allow-same-origin"
       ></iframe>
     )}
