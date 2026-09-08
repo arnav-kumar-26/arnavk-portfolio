@@ -1,7 +1,6 @@
 ---
 import type { Project } from '@/types';
 import { Image } from 'astro:assets';
-import GitHubStats from './GitHubStats.astro';
 import miraCover from '../../assets/mira-coach-cover.png';
 import fleetCover from '../../assets/fleet-tracker-cover.png';
 
@@ -41,9 +40,6 @@ const cover = coverMap[project.coverImage] ?? miraCover;
         class="mt-3 h-64 w-full border border-border-hairline"
         sandbox="allow-scripts allow-same-origin"
       ></iframe>
-    )}
-    {project.githubRepo && (
-      <GitHubStats name={project.githubRepo.name} owner={project.githubRepo.owner} />
     )}
     <span class="font-mono text-label uppercase tracking-widest text-text-muted">{project.status}</span>
   </div>

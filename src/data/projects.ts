@@ -18,7 +18,6 @@ export const projects: Project[] = [
     summary: 'Real-time fleet tracking dashboard with live vehicle positions.',
     description:
       'A static-first dashboard with live map integration, edge-cached tiles, and session-aware data fetching — built to stay fast on low-bandwidth connections without SSR.',
-    demoUrl: 'https://example.com/fleet-demo',
     githubRepo: { name: 'fleet-tracker' },
     tags: ['TypeScript', 'Astro', 'MapLibre', 'Cloudflare'],
     coverImage: 'fleet-tracker-cover.png',
