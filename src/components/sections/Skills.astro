@@ -7,11 +7,11 @@ import SkillPill from './SkillPill.astro';
   <div class="mb-8">
     <h2 id="skills-heading" class="reveal font-display text-h2 tracking-tightest">Skills</h2>
   </div>
-  <div class="space-y-6">
+  <div class="space-y-8">
     {skills.map((cat) => (
-      <div class="space-y-2">
-        <h3 class="font-mono text-label uppercase tracking-widest text-text-primary">{cat.category}</h3>
-        <div class="flex flex-wrap gap-2">
+      <div class="space-y-3">
+        <h3 class="font-mono text-body uppercase tracking-widest text-text-primary">{cat.category}</h3>
+        <div class="flex flex-wrap gap-3">
           {cat.items.map((item) => <SkillPill label={item} />)}
         </div>
       </div>
