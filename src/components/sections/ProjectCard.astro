@@ -28,8 +28,8 @@ const cover = coverMap[project.coverImage] ?? miraCover;
   </div>
   <div class="pt-4 space-y-2">
     <h3 class="font-display text-h3">{project.title}</h3>
-    <p class="font-mono text-body text-text-muted">{project.summary}</p>
-    <p class="font-mono text-body text-text-muted">{project.description}</p>
+    <p class="font-display text-body text-text-muted">{project.summary}</p>
+    <p class="font-display text-body text-text-muted">{project.description}</p>
     <div class="flex flex-wrap gap-2 pt-1">
       {project.tags.map((t) => <span class="border border-border-hairline px-2 py-1 font-mono text-label uppercase tracking-widest text-text-muted">{t}</span>)}
     </div>

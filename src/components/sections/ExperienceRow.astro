@@ -16,7 +16,7 @@ const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present`
   </div>
   <div class="exp-content max-w-[32ch] space-y-2">
     <h3 class="font-display text-h3">{entry.company} — {entry.role}</h3>
-    <ul class="list-disc list-inside space-y-1 font-mono text-body text-text-muted" role="list">
+    <ul class="list-disc list-inside space-y-1 font-display text-body text-text-muted" role="list">
       {entry.impactBullets.map((b) => <li>{b}</li>)}
     </ul>
   </div>
