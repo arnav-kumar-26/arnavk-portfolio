@@ -1,28 +1,40 @@
 ---
+import { socialLinks } from '../../data/social';
+
 const year = new Date().getFullYear();
+const socials = socialLinks.filter((s) => s.platform !== 'Email');
+const email = socialLinks.find((s) => s.platform === 'Email');
 ---
 
 <footer class="relative bg-background-dark text-text-inverse overflow-hidden">
-  <div class="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-16">
+  <div class="mx-auto max-w-7xl px-6 pt-section pb-4 md:px-8">
     <!-- Rotated name-mark: flex justify-end + rotate(180deg) in normal flow (never absolute) -->
     <div class="footer-namemark-row flex justify-end overflow-hidden">
       <span class="footer-namemark inline-block rotate-180 font-namemark font-black tracking-tightest leading-[0.9] text-text-inverse whitespace-nowrap" aria-hidden="true">
-        arnav k.
+        arnav.
       </span>
     </div>
 
-    <div class="mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
-      <div class="flex flex-col gap-2 max-w-[16rem]">
-        <p class="font-mono text-label uppercase tracking-widest text-text-inverse-muted">Let's Connect</p>
-        <a href="mailto:hello@example.com" class="link-underline font-mono text-body text-text-inverse w-fit">hello@example.com</a>
-        <p class="font-mono text-body text-text-inverse-muted">Based in India — available for internships.</p>
+    <div class="mt-8 grid gap-8 md:grid-cols-2 md:items-end">
+      <div class="space-y-4">
+        <div class="flex gap-4">
+          <span class="font-mono text-label uppercase tracking-widest text-text-inverse-muted w-20 shrink-0">[Social]</span>
+          <nav aria-label="Social links" class="flex flex-col gap-2">
+            {socials.map((s) => (
+              <a href={s.href} aria-label={s.label} target="_blank" rel="noopener noreferrer" class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{s.platform}</a>
+            ))}
+          </nav>
+        </div>
+        {email && (
+          <div class="flex gap-4">
+            <span class="font-mono text-label uppercase tracking-widest text-text-inverse-muted w-20 shrink-0">[Contact]</span>
+            <a href={email.href} aria-label={email.label} class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{email.href.replace('mailto:', '')}</a>
+          </div>
+        )}
+        <p class="font-mono text-label text-text-inverse-muted">12.92646° N, 77.67812° E</p>
       </div>
-      <div class="flex flex-col gap-2 text-right md:text-left">
-        <nav aria-label="Social links" class="flex gap-4 justify-end md:justify-start">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse">LinkedIn</a>
-          <a href="mailto:hello@example.com" class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse">Email</a>
-        </nav>
+      <div class="flex flex-col gap-2 md:items-end md:text-right">
+        <p class="font-mono text-body text-text-inverse">Based in Bangalore, India — available for work.</p>
         <p class="font-mono text-label text-text-inverse-muted">© {year} Arnav. All rights reserved.</p>
       </div>
     </div>
@@ -32,7 +44,7 @@ const year = new Date().getFullYear();
 <style>
   .footer-namemark {
     transform: rotate(180deg);
-    font-size: clamp(4rem, 16vw, 9rem);
+    font-size: clamp(6rem, 18vw, 11rem);
     letter-spacing: -0.02em;
     line-height: 0.9;
     color: theme('colors.text.inverse');
