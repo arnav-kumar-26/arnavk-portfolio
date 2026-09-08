@@ -1,5 +1,6 @@
 ---
 import NavLink from './NavLink.astro';
+import Button from '../ui/Button.astro';
 
 interface NavItem {
   label: string;
@@ -24,12 +25,15 @@ const { items = defaultNav } = Astro.props as { items?: NavItem[] };
     {
       items.map((item, i) => (
         <>
-          <NavLink label={item.label} href={item.href} />
+          {item.label === 'Contact' ? (
+            <Button href={item.href} typography="font-display text-nav font-medium normal-case tracking-normal">Contact</Button>
+          ) : (
+            <NavLink label={item.label} href={item.href} />
+          )}
           {i < items.length - 1 && <span class="font-mono text-label text-text-muted" aria-hidden="true">/</span>}
         </>
       ))
     }
-    <span class="hidden md:inline-flex h-2 w-2 rounded-pill border border-text-primary" aria-hidden="true"></span>
   </div>
 </nav>
 

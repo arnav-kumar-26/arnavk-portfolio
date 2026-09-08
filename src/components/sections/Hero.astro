@@ -4,18 +4,20 @@ import { Image } from 'astro:assets';
 import heroPortrait from '../../assets/hero-portrait.svg';
 ---
 
-<section id="hero" aria-labelledby="hero-heading" class="py-section grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-  <div class="space-y-6">
-    <h1 id="hero-heading" class="reveal-hero font-display text-hero leading-[0.9] tracking-tightest">Arnav</h1>
-    <p class="reveal font-display text-body text-text-muted max-w-[32ch]" style="animation-delay: calc(var(--stagger) * 1)">
+<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[100dvh] flex-col overflow-hidden">
+  <div class="flex flex-1 flex-col justify-center py-16">
+    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display text-hero leading-[0.9] tracking-tightest">Arnav</h1>
+    <p class="reveal relative z-10 font-display text-body text-text-muted" style="animation-delay: calc(var(--stagger) * 1); max-width: var(--content-col-max)">
       Developer — building static-first, token-driven interfaces. Currently available for internships in India.
     </p>
-    <div class="no-reveal flex flex-wrap gap-3 pt-2">
+  </div>
+  <div class="relative z-10 flex items-end justify-between gap-8 pb-10">
+    <div class="no-reveal flex flex-wrap gap-3">
       <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
       <Button href="#contact" variant="outline">Contact</Button>
     </div>
   </div>
-  <div class="reveal justify-self-center md:justify-self-end" style="animation-delay: calc(var(--stagger) * 2)">
+  <div class="pointer-events-none absolute bottom-0 right-0 z-0 hidden w-[36vw] max-w-[520px] -mr-4 sm:block md:-mr-8 lg:-mr-12">
     <Image
       src={heroPortrait}
       alt="Portrait of Arnav"
@@ -23,7 +25,58 @@ import heroPortrait from '../../assets/hero-portrait.svg';
       height={480}
       loading="eager"
       fetchpriority="high"
-      class="h-auto w-full max-w-[420px] object-cover"
+      class="h-auto w-full object-cover"
     />
   </div>
+  <span class="hero-cursor rounded-pill" aria-hidden="true"></span>
 </section>
+
+<script>
+  const section = document.getElementById('hero');
+  const dot = section?.querySelector('.hero-cursor');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (section && dot instanceof HTMLElement && finePointer && !reducedMotion) {
+    section.addEventListener(
+      'mousemove',
+      (e) => {
+        dot.style.opacity = '1';
+        dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      },
+      { passive: true }
+    );
+  }
+</script>
+
+<style>
+  .hero-cursor {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+    border: 1px solid currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-fast) var(--ease-signature);
+  }
+  @media (pointer: fine) {
+    #hero {
+      cursor: none;
+    }
+    #hero .hero-cursor {
+      display: block;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #hero {
+      cursor: auto;
+    }
+    #hero .hero-cursor {
+      display: none;
+    }
+  }
+</style>
