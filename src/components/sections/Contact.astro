@@ -1,6 +1,5 @@
 ---
 import Button from '../ui/Button.astro';
-import Eyebrow from '../ui/Eyebrow.astro';
 
 const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID as string | undefined;
 const hasFormspree = Boolean(formspreeId);
@@ -9,8 +8,7 @@ const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefine
 
 <section id="contact" aria-labelledby="contact-heading" class="py-section bg-background-dark text-text-inverse -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12">
   <div class="mx-auto max-w-7xl">
-    <div class="mb-8 flex items-baseline gap-4">
-      <Eyebrow label="CONTACT" tone="inverse" />
+    <div class="mb-8">
       <h2 id="contact-heading" class="reveal font-display text-h2 tracking-tightest text-text-inverse">Let's Connect</h2>
     </div>
 

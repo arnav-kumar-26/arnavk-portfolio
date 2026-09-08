@@ -1,14 +1,12 @@
 ---
 import { experience } from '../../data/experience';
 import ExperienceRow from './ExperienceRow.astro';
-import Eyebrow from '../ui/Eyebrow.astro';
 
 const sorted = [...experience].sort((a, b) => b.startDate.localeCompare(a.startDate));
 ---
 
 <section id="experience" aria-labelledby="experience-heading" class="py-section">
-  <div class="mb-8 flex items-baseline gap-4">
-    <Eyebrow label="EXPERIENCE" />
+  <div class="mb-8">
     <h2 id="experience-heading" class="reveal font-display text-h2 tracking-tightest">Experience</h2>
   </div>
   <div class="reveal-group">
