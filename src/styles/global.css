@@ -33,6 +33,7 @@
   body {
     background-color: theme('colors.background.DEFAULT');
     color: theme('colors.text.primary');
+    overflow-x: clip;
     @apply tracking-body;
   }
   :focus-visible {
