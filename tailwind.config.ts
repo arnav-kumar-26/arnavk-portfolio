@@ -12,6 +12,7 @@ export default {
         },
         text: {
           primary: '#1e1e1f',
+          secondary: '#29292b',
           muted: '#7f7f80',
           inverse: '#f2f2f2',
           'inverse-muted': '#a9a9aa',

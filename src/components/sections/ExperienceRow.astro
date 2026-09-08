@@ -15,7 +15,7 @@ const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present`
     {entry.location && <span class="font-mono text-label text-text-muted block mt-1 leading-relaxed">{entry.location}</span>}
   </div>
   <h3 class="font-display text-h3">{entry.company} — {entry.role}</h3>
-  <ul class="list-disc list-inside space-y-1 font-display text-body text-text-muted" role="list">
+  <ul class="list-disc list-inside space-y-1 font-display text-body text-text-secondary" role="list">
     {entry.impactBullets.map((b) => <li>{b}</li>)}
   </ul>
 </div>
