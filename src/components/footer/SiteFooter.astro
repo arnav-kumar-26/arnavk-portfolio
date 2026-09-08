@@ -18,17 +18,17 @@ const email = socialLinks.find((s) => s.platform === 'Email');
     <div class="mt-8 grid gap-8 md:grid-cols-2 md:items-end">
       <div class="space-y-4">
         <div class="flex gap-4">
-          <span class="font-mono text-label uppercase tracking-widest text-text-inverse-muted w-20 shrink-0">[Social]</span>
+          <span class="font-mono text-body uppercase tracking-widest text-text-inverse-muted w-32 shrink-0">[Social]</span>
           <nav aria-label="Social links" class="flex flex-col gap-2">
             {socials.map((s) => (
-              <a href={s.href} aria-label={s.label} target="_blank" rel="noopener noreferrer" class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{s.platform}</a>
+              <a href={s.href} aria-label={s.label} target="_blank" rel="noopener noreferrer" class="link-underline font-mono text-body uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{s.platform}</a>
             ))}
           </nav>
         </div>
         {email && (
           <div class="flex gap-4">
-            <span class="font-mono text-label uppercase tracking-widest text-text-inverse-muted w-20 shrink-0">[Contact]</span>
-            <a href={email.href} aria-label={email.label} class="link-underline font-mono text-label uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{email.href.replace('mailto:', '')}</a>
+            <span class="font-mono text-body uppercase tracking-widest text-text-inverse-muted w-32 shrink-0">[Contact]</span>
+            <a href={email.href} aria-label={email.label} class="link-underline font-mono text-body uppercase tracking-widest text-text-inverse-muted hover:text-text-inverse w-fit">{email.href.replace('mailto:', '')}</a>
           </div>
         )}
       </div>
