@@ -8,9 +8,9 @@ interface Props {
   typography?: string;
 }
 
-const { href, target, rel, variant = 'primary', ariaLabel, typography = 'font-mono text-label uppercase tracking-widest' } = Astro.props;
+const { href, target, rel, variant = 'primary', ariaLabel, typography = 'font-mono text-body uppercase tracking-widest' } = Astro.props;
 
-const base = `inline-flex items-center gap-2 rounded-button ${typography} px-5 py-2.5 transition-colors duration-350 ease-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2`;
+const base = `inline-flex items-center gap-2 rounded-button ${typography} px-6 py-3 transition-colors duration-350 ease-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2`;
 const variants = {
   primary: 'bg-accent text-text-inverse hover:bg-accent-hover border border-transparent',
   outline: 'bg-transparent text-text-primary border border-text-primary hover:bg-accent hover:text-text-inverse hover:border-accent',
