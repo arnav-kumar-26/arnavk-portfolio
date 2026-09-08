@@ -39,6 +39,25 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     <script>
       import '../scripts/entrance.ts';
     </script>
+    <span class="site-cursor rounded-pill" aria-hidden="true"></span>
+    <script>
+      // Site-wide custom cursor-circle (moved from Hero-scoped per TASK.md Task 5):
+      // single dot + document-level mousemove listener, fine-pointer only,
+      // inert under prefers-reduced-motion.
+      const dot = document.querySelector('.site-cursor');
+      const finePointer = window.matchMedia('(pointer: fine)').matches;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (dot instanceof HTMLElement && finePointer && !reducedMotion) {
+        document.addEventListener(
+          'mousemove',
+          (e) => {
+            dot.style.opacity = '1';
+            dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+          },
+          { passive: true }
+        );
+      }
+    </script>
   </body>
 </html>
 
@@ -46,5 +65,37 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
   /* Fluid container constraints — prevents CLS on hydration */
   main {
     min-height: 50vh;
+  }
+
+  /* Site-wide cursor-circle (see script above) */
+  .site-cursor {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: 2rem;
+    height: 2rem;
+    margin: -1rem 0 0 -1rem;
+    border: 1px solid currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--dur-fast) var(--ease-signature);
+  }
+  @media (pointer: fine) {
+    body {
+      cursor: none;
+    }
+    body .site-cursor {
+      display: block;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body {
+      cursor: auto;
+    }
+    body .site-cursor {
+      display: none;
+    }
   }
 </style>
