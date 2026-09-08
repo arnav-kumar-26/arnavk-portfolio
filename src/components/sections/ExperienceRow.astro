@@ -11,10 +11,10 @@ const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present`
 
 <div class="exp-row grid gap-4 py-6">
   <div class="exp-label">
-    <span class="font-mono text-label uppercase tracking-widest text-text-muted">{dateRange}</span>
-    {entry.location && <span class="font-mono text-label text-text-muted block">{entry.location}</span>}
+    <span class="font-mono text-label uppercase tracking-widest text-text-primary">{dateRange}</span>
+    {entry.location && <span class="font-mono text-label text-text-muted block mt-1 leading-relaxed">{entry.location}</span>}
   </div>
-  <div class="exp-content max-w-[32ch] space-y-2">
+  <div class="exp-content space-y-2">
     <h3 class="font-display text-h3">{entry.company} — {entry.role}</h3>
     <ul class="list-disc list-inside space-y-1 font-display text-body text-text-muted" role="list">
       {entry.impactBullets.map((b) => <li>{b}</li>)}
