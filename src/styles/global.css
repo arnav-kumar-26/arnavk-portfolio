@@ -12,7 +12,7 @@
   --gutter-width: 2rem;
   --section-rhythm: 10rem;
   --label-col-width: 8rem;
-  --content-col-max: 32ch;
+  --content-col-max: 65ch;
 }
 
 @media (prefers-reduced-motion: reduce) {
