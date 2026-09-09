@@ -1,5 +1,23 @@
 # Implementation Plan
-> ### OPENCODE-GOAL EXECUTION RULES (ZERO MANUAL CHECKS)
+
+> ## STATUS: COMPLETE — REFERENCE ONLY (2026-09-08)
+> This plan has been fully executed. Do not run tasks from it again.
+> The live build loop is now governed by **`TASK.md`** (third implementation pass).
+>
+> ### Decisions recorded here at close-out (supersede any conflicting text below)
+> 1. **Deploy = Vercel** (site already deployed there). All Cloudflare references in
+>    earlier spec text (`wrangler.toml`, `public/_headers`) are dead — Phase 8's
+>    `vercel.json` + no-adapter static output is the correct record.
+> 2. **Fonts = Geist / PT Mono** via `@fontsource` (per `AGENTS.md` Stack). The
+>    Archivo / IBM Plex Mono / Archivo Black fallback plan is retired.
+> 3. **Execution protocol = `TASK.md` rules** (per-step `npm run check`, stage only
+>    touched files, pause on `⚠️ NEEDS INFO` / `⚠️ CONFIRM`). The `opencode-goal`
+>    rules quoted immediately below are superseded and kept only as history.
+> 4. **Heading tokens = `TASK.md` Task 2 measured values**: `hero` max `11.2rem`
+>    (≈179px tier: Hero name + Introduction heading), `h2` max `4.5rem` (≈72px tier:
+>    Experience / Selected Works / Skills). These win over the earlier §4.2 values.
+
+> ### OPENCODE-GOAL EXECUTION RULES (SUPERSEDED — kept as history, see STATUS above)
 > You are executing tasks under the automated `opencode-goal` plugin.
 >
 > 1. **ONE TASK PER TURN:** Focus strictly on completing **ONLY ONE** task section (e.g., Task 1.1) per execution turn. Do not attempt an entire Phase at once.
@@ -170,3 +188,11 @@
    branch state.
 2. Once confirmed, output `"GOAL COMPLETE"` per the execution rules at the top of this
    document.
+
+---
+
+## CLOSE-OUT (2026-09-08)
+
+**`GOAL COMPLETE` — all phases executed.** This document is now reference-only.
+For current work, see `TASK.md` (live build loop), `architecture.md` (structural law
+as amended), and `AGENTS.md` (engineering rules).

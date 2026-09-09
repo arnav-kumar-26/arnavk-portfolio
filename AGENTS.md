@@ -2,7 +2,8 @@
 
 ## Stack (do not deviate without a written ADR)
 Astro (static output only — never enable `output: 'server'` or `'hybrid'`), Tailwind CSS,
-Cloudflare Pages, Astro Content Collections (`@astrojs/mdx` required for `.mdx` posts),
+Vercel (site already deployed there — do not introduce Cloudflare `wrangler.toml` /
+`public/_headers`), Astro Content Collections (`@astrojs/mdx` required for `.mdx` posts),
 `@astrojs/sitemap`, astro:assets, vanilla JS. No React/Vue/Svelte/Solid. No client-side
 state library. No CSS-in-JS.
 
@@ -30,6 +31,8 @@ Font deps: `@fontsource/geist-sans` (Geist 400/500/600/700/900 self-hosted from 
    `<script>`, using the contract in `src/lib/github.ts`. Never move this fetch to
    build time (`getStaticPaths` / frontmatter) — it must reflect live data on every
    page load, degrading gracefully to a static string on failure or rate-limit.
+   Update 2026-09-08: Display of GitHub stars retired from `ProjectCard.astro` per reference design; contract and component retained in codebase.
+   Exception 2026-09-08: Scoped client JS for Hero custom cursor in `Hero.astro` authorized to match reference signature interaction.
 6. The footer name-mark is rotated via `transform: rotate(180deg)` on an element kept
    in **normal document flow** (flex `justify-end`), never `position: absolute` +
    `transform-origin` — the latter clips the text above the viewport (see design-doc
@@ -55,9 +58,9 @@ Font deps: `@fontsource/geist-sans` (Geist 400/500/600/700/900 self-hosted from 
   the client-side contract in §5.3 already handles staleness and failure.
 - Hand-writing `<head>` meta tags on individual pages instead of going through
   `<SEO.astro>` — causes tag drift across pages.
-- Downloading NType 82 or Coolvetica from unofficial "free font" mirrors. Ship with
-  the Archivo / IBM Plex Mono / Archivo Black fallbacks (already wired in
-  `tailwind.config.ts`) until licensed files are confirmed and provided.
+- Downloading NType 82 or Coolvetica from unofficial "free font" mirrors. The site
+  ships Geist / PT Mono via `@fontsource` — do not revert to the retired
+  Archivo / IBM Plex Mono / Archivo Black fallback plan without a written ADR.
 
 ## Definition of done for any new component
 - [ ] Zero client JS unless the component's behavior is listed in §3 as 🟡

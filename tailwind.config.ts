@@ -16,6 +16,7 @@ export default {
           muted: '#7f7f80',
           inverse: '#f2f2f2',
           'inverse-muted': '#a9a9aa',
+          brown: '#5C4033',
         },
         accent: {
           DEFAULT: '#1e1e1f',
@@ -34,14 +35,14 @@ export default {
         namemark: ['Geist', 'Arial', 'sans-serif'],
       },
       fontSize: {
-        hero: ['clamp(3rem, 12vw + 0.5rem, 11.2rem)', { lineHeight: '0.9', letterSpacing: '-0.06em', fontWeight: '500' }],
-        h2: ['clamp(2rem, 4vw + 0.875rem, 4.5rem)', { lineHeight: '1', letterSpacing: '-0.04em', fontWeight: '600' }],
+        hero: ['clamp(3rem, 12vw + 0.5rem, 14rem)', { lineHeight: '0.9', letterSpacing: '-0.06em', fontWeight: '900' }],
+        h2: ['clamp(3rem, 8vw + 1rem, 9rem)', { lineHeight: '1', letterSpacing: '-0.04em', fontWeight: '600' }],
         h3: ['clamp(1.375rem, 1.5vw + 0.875rem, 2.25rem)', { lineHeight: '1.2', letterSpacing: '-0.035em', fontWeight: '500' }],
         h4: ['clamp(1.5rem, 1vw + 1.25rem, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.03em' }],
         h5: ['clamp(1.25rem, 0.75vw + 1.0625rem, 1.5rem)', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
         h6: ['clamp(1rem, 0.5vw + 0.875rem, 1.125rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
-        body: ['1.125rem', { lineHeight: '1.6' }],
-        label: ['0.6875rem', { lineHeight: '1', letterSpacing: '0.08em', fontWeight: '500' }],
+        body: ['1.25rem', { lineHeight: '1.65' }],
+        label: ['0.8125rem', { lineHeight: '1', letterSpacing: '0.08em', fontWeight: '500' }],
         nav: ['clamp(1.125rem, 0.5vw + 1rem, 1.44rem)', { lineHeight: '1.2' }],
       },
       borderRadius: {
@@ -50,7 +51,8 @@ export default {
         button: '5px',
       },
       spacing: {
-        section: '10rem',
+        section: '14rem',
+        'section-lg': '18rem',
         gutter: '2rem',
       },
       boxShadow: {

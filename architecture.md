@@ -1,7 +1,7 @@
 # Portfolio Site — Architecture & Design Specification Document
 
 **Prepared for:** autonomous execution by OpenCode
-**Stack:** Astro (SSG) · Tailwind CSS · Cloudflare Pages · Astro Content Collections (Markdown + MDX via `@astrojs/mdx`) · astro:assets · vanilla JS islands
+**Stack:** Astro (SSG) · Tailwind CSS · Vercel (already deployed) · Astro Content Collections (Markdown + MDX via `@astrojs/mdx`) · astro:assets · vanilla JS islands
 **Design source:** "Katerina" style guide (Swiss-editorial / technical-minimalist)
 **Status:** Architecture phase only — no application code in this document
 
@@ -11,7 +11,7 @@
 
 ### 1.1 Core Pattern: Static-First Jamstack via Astro's Islands Architecture
 
-The site is **100% statically generated** (`output: 'static'` in `astro.config.mjs`). There is no server runtime, no SSR, no ISR — Cloudflare Pages simply serves pre-built HTML/CSS/JS from the edge. This is the correct fit because every content source (bio, experience, skills, blog posts) is known at build time; the *only* truly dynamic piece is GitHub star/commit counts, which is handled as a narrow client-side exception rather than a reason to adopt SSR.
+The site is **100% statically generated** (`output: 'static'` in `astro.config.mjs`). There is no server runtime, no SSR, no ISR — Vercel simply serves pre-built HTML/CSS/JS from the edge. This is the correct fit because every content source (bio, experience, skills, blog posts) is known at build time; the *only* truly dynamic piece is GitHub star/commit counts, which is handled as a narrow client-side exception rather than a reason to adopt SSR.
 
 **Important terminology correction for this stack:** the brief asks for "Server Components vs Client Components," which is React/Next.js vocabulary. Astro's actual model is different and matters for how OpenCode should build this:
 
@@ -47,10 +47,10 @@ Three distinct data paths, each with a different trust/freshness model:
 
 - **JS budget:** zero JS on pages with no GitHub-stats card; two small shared scripts (`entrance.ts` for `IntersectionObserver` reveals, `sticky-nav.ts` for the scroll-based background swap) on every page, each under ~1KB gzipped, no bundler runtime overhead since there's no framework.
 - **Images:** every content image goes through `astro:assets` (`<Image />` / `<Picture />`), never a raw `<img src="/public/...">` for anything sourced from `src/assets/`. This gives automatic `width`/`height` (prevents CLS), WebP/AVIF output, and lazy-loading by default. The Hero portrait is the one exception: mark it `loading="eager"` and `fetchpriority="high"` since it's the LCP element.
-- **Fonts:** self-host Archivo (display) + IBM Plex Mono (labels/body) as variable `woff2` files, `font-display: swap`, preloaded in `<head>` via `<link rel="preload" as="font">` for the two weights actually used above the fold. Archivo Black (footer name-mark) loads separately and un-preloaded since it's below the fold on first paint.
+- **Fonts:** self-host Geist (display) + PT Mono (labels/body) via `@fontsource` `woff2` files, `font-display: swap`, preloaded in `<head>` via `<link rel="preload" as="font">` for the two weights actually used above the fold.
 - **CSS:** single Tailwind-generated stylesheet, JIT-purged of unused classes at build time — no separate CSS-in-JS runtime.
 - **Decorative hairline grid** (the 5–6 vertical guide lines from the style guide) is implemented once as a repeating CSS `background-image` (a tiny inline SVG or `linear-gradient` pattern) on a single wrapper element — not as five to six real DOM elements per page.
-- **Cloudflare Pages:** static assets are edge-cached globally by default; a `public/_headers` file sets long `Cache-Control: immutable` on hashed asset filenames and short/no-cache on HTML documents.
+- **Vercel:** static assets are edge-cached globally by default; a `vercel.json` `headers` array sets long `Cache-Control: immutable` on hashed asset filenames (`/_astro/(.*)`) and short/no-cache on HTML documents. Pure static output — no adapter, no server-only APIs.
 
 ### 1.4 SEO Strategy
 
@@ -69,18 +69,16 @@ portfolio/
 ├── tailwind.config.ts               # full token mapping — see §4
 ├── tsconfig.json                    # strict mode on; path alias "@/*" → "src/*"
 ├── package.json                     # deps include @astrojs/tailwind, @astrojs/sitemap, @astrojs/mdx (required for .mdx posts — see note below)
-├── wrangler.toml                    # Cloudflare Pages project config (optional, if not using dashboard-only setup)
+├── vercel.json                    # Vercel headers (long immutable cache on /_astro/*, no-cache on HTML)
 ├── .env.example                     # PUBLIC_FORMSPREE_ID, PUBLIC_GITHUB_USERNAME (fallback repo owner for GitHubStats, see §5.3) — no secrets, everything here is public-safe
 ├── AGENTS.md                        # generated verbatim from §6 at project init — not hand-written separately, and not just documentation embedded in this spec
 │
 ├── public/
-│   ├── _headers                     # Cloudflare cache-control rules
 │   ├── robots.txt
 │   ├── favicon.svg
-│   └── fonts/
-│       ├── archivo-variable.woff2
-│       ├── ibm-plex-mono-variable.woff2
-│       └── archivo-black.woff2
+│   └── fonts/                       # self-hosted via @fontsource files/ output: geist-sans + pt-mono
+│       ├── geist-sans-*.woff2       # Geist 400/500/600/700/900
+│       └── pt-mono-*.woff2          # PT Mono 400
 │
 ├── src/
 │   ├── content.config.ts            # Content Collections schema (Zod) — blog frontmatter contract, §5.2
@@ -159,7 +157,7 @@ portfolio/
 
 | Brief's category | Where it lives here | Why |
 |---|---|---|
-| Configuration | root-level `*.config.*`, `tsconfig.json`, `wrangler.toml` | standard Astro/Cloudflare convention |
+| Configuration | root-level `*.config.*`, `tsconfig.json`, `vercel.json` | standard Astro/Vercel convention |
 | Context/State providers | *(intentionally absent — see §3.4)* | no global client state exists in this app; module-scoped `<script>` state per behavior is sufficient |
 | Shared UI components | `src/components/ui/` | pure, prop-driven, zero business logic |
 | Layouts | `src/layouts/` | the only place `<html>`/`<head>` is written |
@@ -229,9 +227,9 @@ There is **no global state management library** in this stack (no Redux/Zustand/
 
 ## 4. Design System Tokens & Configuration Mapping
 
-### 4.1 Font Substitution Note
+### 4.1 Font Note (decided 2026-09-08 — supersedes the NType 82 / Coolvetica fallback plan below)
 
-The tech stack specifies **freely-licensed fallbacks now** (Archivo, IBM Plex Mono, Archivo Black) rather than the style guide's aspirational NType 82 / Coolvetica, pending license confirmation. The token config below is built so swapping in the licensed fonts later is a **one-line change per family** (just prepend the licensed font name to each array) — no restructuring required.
+The site ships **Geist (`@fontsource/geist-sans`, weights 400/500/600/700/900) for display** and **PT Mono (`@fontsource/pt-mono`, weight 400) for labels/body**, self-hosted from each package's `files/` output. The earlier Archivo / IBM Plex Mono / Archivo Black fallback plan (and any NType 82 / Coolvetica licensing track) is retired — do not reintroduce it without a written ADR.
 
 ### 4.2 `tailwind.config.ts`
 
@@ -265,17 +263,20 @@ export default {
         },
       },
       fontFamily: {
-        // Swap in '"NType 82"' / '"NType 82 Mono"' as the first entry once licensed files exist.
-        display: ['Archivo', 'ui-sans-serif', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
-        // Footer name-mark only — swap in 'Coolvetica' as first entry pending its license check.
-        namemark: ['"Archivo Black"', 'sans-serif'],
+        // Decided 2026-09-08: Geist for display + name-mark, PT Mono for labels/body.
+        display: ['Geist', 'ui-sans-serif', 'sans-serif'],
+        mono: ['"PT Mono"', 'ui-monospace', 'monospace'],
+        // Footer name-mark only.
+        namemark: ['Geist', 'sans-serif'],
       },
       fontSize: {
-        // Fluid via clamp(min, preferred, max) — the style guide's desktop sizes (8.75rem /
-        // 4.5rem) are the max end only; without this, the hero headline overflows badly
-        // below ~768px. Min values chosen to stay legible on a 375px viewport.
-        hero: ['clamp(3rem, 6vw + 1.5rem, 8.75rem)', { lineHeight: '0.9', letterSpacing: '-0.02em', fontWeight: '500' }],
+        // Fluid via clamp(min, preferred, max).
+        // Decided 2026-09-08 (TASK.md Task 2, measured reference values win over the
+        // earlier §4.2 values): two tiers — `hero` max ≈ 179px (11.2rem, measured on the
+        // reference Introduction heading; Hero name shares the tier by extrapolation),
+        // `h2` max = 4.5rem (measured 71.6736px, shared Experience/Selected Works/Skills tier).
+        // Min values chosen to stay legible on a 375px viewport.
+        hero: ['clamp(4rem, 8vw + 2rem, 11.2rem)', { lineHeight: '0.9', letterSpacing: '-0.02em', fontWeight: '500' }],
         h2: ['clamp(2.25rem, 4vw + 1rem, 4.5rem)', { lineHeight: '1', letterSpacing: '-0.01em', fontWeight: '600' }],
         h3: ['clamp(1.375rem, 1vw + 1.125rem, 1.75rem)', { lineHeight: '1.2', fontWeight: '500' }],
         body: ['0.9375rem', { lineHeight: '1.6' }],
@@ -354,21 +355,17 @@ These stay as raw CSS custom properties (not Tailwind tokens) because they're co
 }
 
 @font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/archivo-variable.woff2') format('woff2-variations');
-  font-weight: 400 700;
+  font-family: 'Geist';
+  src: url('/fonts/geist-sans-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
 }
+/* Geist 500/600/700/900 @font-face blocks follow the same pattern —
+   self-hosted from @fontsource/geist-sans files/ output. */
 @font-face {
-  font-family: 'IBM Plex Mono';
-  src: url('/fonts/ibm-plex-mono-variable.woff2') format('woff2-variations');
-  font-weight: 400 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Archivo Black';
-  src: url('/fonts/archivo-black.woff2') format('woff2');
-  font-weight: 900;
+  font-family: 'PT Mono';
+  src: url('/fonts/pt-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
 }
 ```
@@ -537,9 +534,12 @@ Two supported shapes — pick one per environment via `PUBLIC_FORMSPREE_ID`:
 
 ## Stack (do not deviate without a written ADR)
 Astro (static output only — never enable `output: 'server'` or `'hybrid'`), Tailwind CSS,
-Cloudflare Pages, Astro Content Collections (`@astrojs/mdx` required for `.mdx` posts),
+Vercel (site already deployed there — do not introduce Cloudflare `wrangler.toml` /
+`public/_headers`), Astro Content Collections (`@astrojs/mdx` required for `.mdx` posts),
 `@astrojs/sitemap`, astro:assets, vanilla JS. No React/Vue/Svelte/Solid. No client-side
 state library. No CSS-in-JS.
+
+Font deps: `@fontsource/geist-sans` (Geist 400/500/600/700/900 self-hosted from its `files/` output), `@fontsource/pt-mono` (PT Mono 400 self-hosted from its `files/` output).
 
 ## Naming conventions
 - Components: PascalCase, `.astro` extension — `ProjectCard.astro`
@@ -587,9 +587,9 @@ state library. No CSS-in-JS.
   the client-side contract in §5.3 already handles staleness and failure.
 - Hand-writing `<head>` meta tags on individual pages instead of going through
   `<SEO.astro>` — causes tag drift across pages.
-- Downloading NType 82 or Coolvetica from unofficial "free font" mirrors. Ship with
-  the Archivo / IBM Plex Mono / Archivo Black fallbacks (already wired in
-  `tailwind.config.ts`) until licensed files are confirmed and provided.
+- Downloading NType 82 or Coolvetica from unofficial "free font" mirrors. The site
+  ships Geist / PT Mono via `@fontsource` (see §4.1) — do not revert to the retired
+  Archivo / IBM Plex Mono / Archivo Black fallback plan without a written ADR.
 
 ## Definition of done for any new component
 - [ ] Zero client JS unless the component's behavior is listed in §3 as 🟡

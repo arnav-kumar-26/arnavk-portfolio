@@ -18,23 +18,20 @@ const coverMap: Record<string, typeof miraCover> = {
 const cover = coverMap[project.coverImage] ?? miraCover;
 ---
 
-<article class="project-card">
+<article class="project-card border border-border-hairline p-4">
   <div class="relative">
     <div class="layer-back absolute inset-0 translate-x-2 translate-y-2 bg-accent"></div>
-    <div class="layer-front relative bg-background">
-      <Image src={cover} alt={`${project.title} cover`} width={800} height={450} loading="lazy" class="h-auto w-full object-cover" />
+    <div class="layer-front relative bg-background overflow-hidden aspect-[16/10]">
+      <Image src={cover} alt={`${project.title} cover`} width={800} height={500} loading="lazy" class="h-full w-full object-cover" />
     </div>
   </div>
   <div class="pt-6 space-y-3">
     <h3 class="font-display text-h3">{project.title}</h3>
-    <p class="font-display text-body text-text-muted">{project.summary}</p>
-    <p class="font-display text-body text-text-muted">{project.description}</p>
-    <div class="flex flex-wrap gap-x-3 gap-y-1 pt-1 font-mono text-label uppercase tracking-widest text-text-muted">
-      {project.tags.map((t, i) => (
-        <>
-          <span>{t}</span>
-          {i < project.tags.length - 1 && <span aria-hidden="true">/</span>}
-        </>
+    <p class="font-display text-body text-text-brown">{project.summary}</p>
+    <p class="font-display text-body text-text-brown">{project.description}</p>
+    <div class="flex flex-wrap gap-3 pt-1">
+      {project.tags.map((t) => (
+        <span class="inline-flex items-center rounded-button border border-border-hairline px-3 py-1 font-mono text-body uppercase tracking-widest text-text-muted min-h-[40px]">{t}</span>
       ))}
     </div>
     {project.demoUrl && (

@@ -6,8 +6,8 @@ const sorted = [...experience].sort((a, b) => b.startDate.localeCompare(a.startD
 ---
 
 <section id="experience" aria-labelledby="experience-heading" class="py-section">
-  <div class="mb-8">
-    <h2 id="experience-heading" class="reveal font-display text-h2 tracking-tightest">Experience</h2>
+  <div class="mb-16">
+    <h2 id="experience-heading" class="reveal font-display text-hero tracking-tightest pl-[4vw]">Experience</h2>
   </div>
   <div class="reveal-group">
     {sorted.map((e) => <ExperienceRow entry={e} />)}

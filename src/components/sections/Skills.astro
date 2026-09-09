@@ -3,9 +3,9 @@ import { skills } from '../../data/skills';
 import SkillPill from './SkillPill.astro';
 ---
 
-<section id="skills" aria-labelledby="skills-heading" class="py-section">
-  <div class="mb-8">
-    <h2 id="skills-heading" class="reveal font-display text-h2 tracking-tightest">Skills</h2>
+<section id="skills" aria-labelledby="skills-heading" class="pt-section pb-[var(--section-rhythm-lg)]">
+  <div class="mb-16">
+    <h2 id="skills-heading" class="reveal font-display text-hero tracking-tightest pl-[4vw]">Skills</h2>
   </div>
   <div class="grid gap-x-12 gap-y-10 md:grid-cols-3">
     {skills.map((cat) => (

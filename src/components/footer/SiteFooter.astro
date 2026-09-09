@@ -7,10 +7,9 @@ const email = socialLinks.find((s) => s.platform === 'Email');
 ---
 
 <footer class="relative bg-background-dark text-text-inverse overflow-hidden">
-  <div class="mx-auto max-w-7xl px-6 pt-40 pb-8 md:px-8">
-    <!-- Rotated name-mark: flex justify-between + rotate(180deg) in normal flow (never absolute) -->
-    <div class="footer-namemark-row flex items-start justify-between overflow-hidden -mt-40">
-      <a href="/" class="pt-2 font-display text-h5 text-text-inverse focus-visible:outline-none">Arnav</a>
+  <div class="w-full px-6 pt-56 pb-12 md:px-8 lg:px-12">
+    <!-- Rotated name-mark: flex justify-center + rotate(180deg) in normal flow (never absolute) -->
+    <div class="footer-namemark-row flex items-start justify-center overflow-hidden -mt-40">
       <span class="footer-namemark inline-block rotate-180 font-namemark font-black tracking-tightest leading-[0.9] text-text-inverse whitespace-nowrap" aria-hidden="true">
         arnav.
       </span>
@@ -47,7 +46,7 @@ const email = socialLinks.find((s) => s.platform === 'Email');
 <style>
   .footer-namemark {
     transform: rotate(180deg);
-    font-size: clamp(8rem, 22vw, 14rem);
+    font-size: clamp(10rem, 28vw, 20rem);
     letter-spacing: -0.02em;
     line-height: 0.9;
     color: theme('colors.text.inverse');
@@ -55,7 +54,7 @@ const email = socialLinks.find((s) => s.platform === 'Email');
   }
   .footer-namemark-row {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     overflow: hidden;
   }
 </style>

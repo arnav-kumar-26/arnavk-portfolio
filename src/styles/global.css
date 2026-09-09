@@ -10,8 +10,9 @@
   --stagger: 150ms;
   --grid-columns: 6;
   --gutter-width: 2rem;
-  --section-rhythm: 10rem;
-  --label-col-width: 8rem;
+  --section-rhythm: 14rem;
+  --section-rhythm-lg: 18rem;
+  --label-col-width: 10rem;
   --content-col-max: 65ch;
 }
 
