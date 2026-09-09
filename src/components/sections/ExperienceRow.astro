@@ -22,7 +22,7 @@ const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present`
 
 <style>
   .exp-row {
-    grid-template-columns: minmax(12rem, 1.2fr) minmax(0, 1.5fr) minmax(0, 2fr);
+    grid-template-columns: var(--label-col-width) 1fr 1fr;
   }
   @media (max-width: 640px) {
     .exp-row {

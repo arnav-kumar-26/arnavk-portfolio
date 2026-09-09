@@ -3,6 +3,64 @@
 @tailwind utilities;
 
 :root {
+  /* Color Palette (Swiss tokens — source of truth for tailwind.config.ts) */
+  --color-brand-black: #0f0f0f;
+  --color-brand-white: #ffffff;
+  --color-brand-gray: #e6e6e6;
+
+  --color-neutral-950: #0f0f0f;
+  --color-neutral-900: #1e1e1f;
+  --color-neutral-800: #29292b;
+  --color-neutral-700: #545455;
+  --color-neutral-600: #69696b;
+  --color-neutral-500: #7f7f80;
+  --color-neutral-400: #949495;
+  --color-neutral-300: #a9a9aa;
+  --color-neutral-200: #bfbfbf;
+  --color-neutral-100: #f2f2f2;
+
+  --color-border-hairline: rgba(0, 0, 0, 0.12);
+  --color-border-subtle: rgba(0, 0, 0, 0.5);
+
+  /* Typography Scale */
+  --font-size-2xs: 10px;
+  --font-size-xs: 15px;
+  --font-size-sm: 16px;
+  --font-size-base: 18px;
+  --font-size-lg: 24px;
+  --font-size-xl: 28px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 40px;
+  --font-size-4xl: 48px;
+  --font-size-5xl: 56px;
+  --font-size-6xl: 64px;
+  --font-size-7xl: 80px;
+  --font-size-display: 140px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing System */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 32px;
+  --space-xxl: 128px;
+
+  /* Border Radius */
+  --radius-sm: 5px;
+
+  /* Viewport Layout Margins */
+  --site-padding-desktop: 48px;
+  --site-padding-tablet: 32px;
+  --site-padding-mobile: 16px;
+
+  /* Layout Constraints */
+  --container-max-width: 1920px;
+  --stroke-width: 1px;
+
+  /* Motion & layout — single source of truth per AGENTS.md rules 7/9, preserved */
   --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 300ms;
   --dur-base: 350ms;

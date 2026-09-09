@@ -24,7 +24,7 @@ export const experience: ExperienceEntry[] = [
     impactBullets: [
       'Implemented Astro static pages with astro:assets image pipeline and 100 Lighthouse score.',
       'Introduced hairline-grid and offset-stacking card patterns without box-shadows.',
-      'Collaborated on SEO and sitemap hardening for static deploy to Cloudflare Pages.',
+      'Collaborated on SEO and sitemap hardening for static deploy to Vercel.',
     ],
   },
   {
