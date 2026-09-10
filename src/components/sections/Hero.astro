@@ -4,38 +4,49 @@ import { Image } from 'astro:assets';
 import heroPortrait from '../../assets/hero-portrait.svg';
 ---
 
-<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[100dvh] flex-col justify-between overflow-hidden">
-  <div class="flex flex-col justify-start pt-36 md:pt-[24vh]">
-    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display font-black text-[clamp(5.5rem,14vw,220px)] tracking-[-0.05em] leading-[0.88] text-text-primary">
+<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[calc(100vh-5rem)] max-h-[860px] flex-col justify-between overflow-hidden">
+  <div class="flex flex-col justify-start pt-16 md:pt-20">
+    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display font-black text-[clamp(5.5rem,14vw,220px)] tracking-[-0.05em] leading-[0.88] text-text-primary p-2">
       Arnav
     </h1>
-    <div class="mt-8 flex flex-col md:grid md:grid-cols-8 md:gap-6 items-start">
-      <div class="md:col-start-2 md:col-span-1">
+    <div class="mt-6 flex flex-col md:grid md:grid-cols-8 md:gap-6 items-start">
+      <div class="md:col-start-2 md:col-span-1 p-2">
         <span class="reveal relative z-10 font-mono text-sm uppercase tracking-widest text-text-muted block pt-1" style="animation-delay: calc(var(--stagger) * 1)" aria-hidden="true">[Intro]</span>
       </div>
-      <div class="mt-2 md:mt-0 md:col-start-3 md:col-span-4 lg:col-span-3">
+      <div class="mt-2 md:mt-0 md:col-start-3 md:col-span-4 lg:col-span-3 p-2">
         <p class="reveal relative z-10 font-display text-[23.04px] leading-[1.5] text-[#1e1e1f]" style="animation-delay: calc(var(--stagger) * 2)">
           Developer — building static-first, token-driven interfaces. Currently available for internships in India.
         </p>
       </div>
     </div>
   </div>
-  <div class="relative z-10 flex items-end justify-start gap-4 pb-8 pt-4">
-    <div class="no-reveal flex flex-wrap gap-4">
+
+  <!-- Action buttons: centered in Column 1 and Column 2 -->
+  <div class="relative z-10 w-full grid grid-cols-8 gap-6 pb-8 pt-4">
+    <div class="col-start-1 col-span-1 flex justify-center items-center">
       <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
+    </div>
+    <div class="col-start-2 col-span-1 flex justify-center items-center">
       <Button href="#contact" variant="outline">Contact</Button>
     </div>
   </div>
-  <div class="pointer-events-none absolute top-16 right-0 z-0 hidden -mr-4 sm:block md:top-20 md:-mr-8 lg:-mr-12">
-    <Image
-      src={heroPortrait}
-      alt="Portrait of Arnav"
-      width={480}
-      height={480}
-      loading="eager"
-      fetchpriority="high"
-      class="h-[calc(100dvh-8rem)] w-auto max-w-[38vw] object-cover"
-    />
+
+  <!-- Portrait image: spans across last 3 columns (Cols 6, 7, 8) with explicit 663px height -->
+  <div class="pointer-events-none absolute inset-x-0 top-8 md:top-12 z-0 hidden sm:block">
+    <div class="grid grid-cols-8 gap-6 w-full">
+      <div class="col-start-6 col-span-3 flex justify-end">
+        <Image
+          src={heroPortrait}
+          alt="Portrait of Arnav"
+          width={600}
+          height={663}
+          loading="eager"
+          fetchpriority="high"
+          class="h-[663px] w-full object-cover object-center"
+          style="height: 663px;"
+        />
+      </div>
+    </div>
   </div>
 </section>
 

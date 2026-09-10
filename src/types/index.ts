@@ -32,7 +32,7 @@ export interface Project {
 }
 
 export interface SkillCategory {
-  category: 'Languages' | 'Frameworks' | 'Tools';
+  category: 'Languages' | 'Frameworks' | 'Tools' | 'Databases' | 'Soft Skills';
   items: string[];
 }
 

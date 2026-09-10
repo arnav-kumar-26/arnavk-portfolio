@@ -5,18 +5,21 @@ import SkillPill from './SkillPill.astro';
 
 <section id="skills" aria-labelledby="skills-heading" class="pt-32 md:pt-48 pb-56 md:pb-72 lg:pb-80">
   <div class="mb-20 md:mb-28">
-    <h2 id="skills-heading" class="reveal font-display font-semibold text-[clamp(3.5rem,11.5vw,179.194px)] tracking-[-0.04em] leading-[0.88] text-text-primary">
+    <h2 id="skills-heading" class="reveal font-display font-semibold text-[clamp(3.5rem,11.5vw,179.194px)] tracking-[-0.04em] leading-[0.88] text-text-primary p-2">
       Skills
     </h2>
   </div>
-  <div class="grid gap-x-12 gap-y-12 md:grid-cols-3">
-    {skills.map((cat) => (
-      <div class="space-y-4">
-        <h3 class="font-mono text-sm uppercase tracking-widest text-text-muted">{cat.category}</h3>
-        <div class="flex flex-wrap gap-3">
-          {cat.items.map((item) => <SkillPill label={item} />)}
+  <div class="grid gap-x-6 gap-y-12 md:grid-cols-8">
+    {skills.map((cat, idx) => {
+      const colStartClass = (idx % 3 === 0) ? 'md:col-start-2' : (idx % 3 === 1) ? 'md:col-start-4' : 'md:col-start-6';
+      return (
+        <div class={`${colStartClass} md:col-span-2 space-y-4 p-2`}>
+          <h3 class="font-mono text-sm uppercase tracking-widest text-text-muted p-2">{cat.category}</h3>
+          <div class="flex flex-wrap gap-3 p-2">
+            {cat.items.map((item) => <SkillPill label={item} />)}
+          </div>
         </div>
-      </div>
-    ))}
+      );
+    })}
   </div>
 </section>
