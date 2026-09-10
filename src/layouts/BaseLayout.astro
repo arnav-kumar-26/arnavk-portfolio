@@ -55,7 +55,7 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
             dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
             
             const target = document.elementFromPoint(e.clientX, e.clientY);
-            if (target && (target.closest('.bg-background-dark') || target.closest('.contact-warm'))) {
+            if (target && (target.closest('#contact') || target.closest('footer') || target.closest('.bg-background-dark') || target.closest('.contact-warm'))) {
               dot.classList.add('cursor-inverted');
             } else {
               dot.classList.remove('cursor-inverted');
@@ -84,13 +84,13 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     width: 2rem;
     height: 2rem;
     margin: -1rem 0 0 -1rem;
-    border: 1px solid currentColor;
+    border: 1px solid #1e1e1f;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--dur-fast) var(--ease-signature), border-color var(--dur-fast) var(--ease-signature);
   }
   .site-cursor.cursor-inverted {
-    border-color: theme('colors.text.inverse');
+    border-color: #ffffff !important;
   }
   @media (pointer: fine) {
     body {

@@ -9,24 +9,22 @@ const { entry } = Astro.props as Props;
 const dateRange = entry.endDate === 'present' ? `${entry.startDate} — present` : `${entry.startDate} — ${entry.endDate}`;
 ---
 
-<div class="exp-row grid gap-12 py-10 border-b border-border-hairline pl-[4vw]">
-  <div class="exp-label">
-    <span class="font-mono text-body uppercase tracking-widest text-text-primary">{dateRange}</span>
-    {entry.location && <span class="font-mono text-body text-text-muted block mt-2 leading-relaxed">{entry.location}</span>}
+<div class="exp-row flex flex-col md:grid md:grid-cols-8 md:gap-6 py-14 md:py-20 border-b border-border-hairline">
+  <!-- Date & Location: strictly inside Column 2 -->
+  <div class="md:col-start-2 md:col-span-1 md:row-start-1 md:row-span-2 mb-6 md:mb-0">
+    <span class="font-mono text-sm uppercase tracking-widest text-text-primary block">{dateRange}</span>
+    {entry.location && <span class="font-mono text-xs uppercase tracking-wider text-text-muted block mt-2">{entry.location}</span>}
   </div>
-  <h3 class="font-display text-h3">{entry.company} — {entry.role}</h3>
-  <ul class="list-disc list-inside space-y-2 font-display text-body text-text-brown" role="list">
-    {entry.impactBullets.map((b) => <li>{b}</li>)}
-  </ul>
-</div>
 
-<style>
-  .exp-row {
-    grid-template-columns: var(--label-col-width) 1fr 1fr;
-  }
-  @media (max-width: 640px) {
-    .exp-row {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+  <!-- Job Title: spans across Columns 3 to 7 -->
+  <div class="md:col-start-3 md:col-span-5 md:row-start-1 mb-6 md:mb-8">
+    <h3 class="font-display font-medium text-2xl md:text-3xl text-text-primary tracking-tight leading-tight">{entry.company} — {entry.role}</h3>
+  </div>
+
+  <!-- Bullet Points: positioned vertically below job title, spanning Columns 4 to 7 -->
+  <div class="md:col-start-4 md:col-span-4 md:row-start-2">
+    <ul class="list-disc list-outside space-y-4 pl-5 font-display text-[23.04px] leading-[1.6] text-[#1e1e1f]" role="list">
+      {entry.impactBullets.map((b) => <li class="pl-1">{b}</li>)}
+    </ul>
+  </div>
+</div>

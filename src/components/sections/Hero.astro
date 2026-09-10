@@ -4,25 +4,24 @@ import { Image } from 'astro:assets';
 import heroPortrait from '../../assets/hero-portrait.svg';
 ---
 
-<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[100dvh] flex-col overflow-hidden">
-  <div class="flex flex-1 flex-col justify-start gap-12 pt-32 md:pt-40 pb-16">
-    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display text-hero tracking-[-0.04em] leading-[0.92] pl-[8vw]">
-      Arnav<span class="relative -top-[0.55em] -ml-2 align-top text-h4 text-text-muted" aria-hidden="true">©</span>
+<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[100dvh] flex-col justify-between overflow-hidden">
+  <div class="flex flex-col justify-start pt-36 md:pt-[24vh]">
+    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display font-black text-[clamp(5.5rem,14vw,220px)] tracking-[-0.05em] leading-[0.88] text-text-primary">
+      Arnav
     </h1>
-    <div class="hero-content-grid mt-4">
-      <div class="hero-label">
-        <span class="reveal relative z-10 font-mono text-xs uppercase tracking-widest text-text-muted block" style="animation-delay: calc(var(--stagger) * 1)" aria-hidden="true">[Intro]</span>
+    <div class="mt-8 flex flex-col md:grid md:grid-cols-8 md:gap-6 items-start">
+      <div class="md:col-start-2 md:col-span-1">
+        <span class="reveal relative z-10 font-mono text-sm uppercase tracking-widest text-text-muted block pt-1" style="animation-delay: calc(var(--stagger) * 1)" aria-hidden="true">[Intro]</span>
       </div>
-      <div class="hero-body">
-        <p class="reveal relative z-10 font-display text-body text-text-brown" style="animation-delay: calc(var(--stagger) * 2); max-width: var(--content-col-max)">
+      <div class="mt-2 md:mt-0 md:col-start-3 md:col-span-4 lg:col-span-3">
+        <p class="reveal relative z-10 font-display text-[23.04px] leading-[1.5] text-[#1e1e1f]" style="animation-delay: calc(var(--stagger) * 2)">
           Developer — building static-first, token-driven interfaces. Currently available for internships in India.
         </p>
       </div>
     </div>
   </div>
-  <div class="relative z-10 flex items-end justify-between gap-8 pb-10">
-    <span class="font-mono text-label uppercase tracking-widest text-text-primary hidden sm:block">Scroll Down</span>
-    <div class="no-reveal flex flex-wrap gap-4 ml-auto">
+  <div class="relative z-10 flex items-end justify-start gap-4 pb-8 pt-4">
+    <div class="no-reveal flex flex-wrap gap-4">
       <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
       <Button href="#contact" variant="outline">Contact</Button>
     </div>
@@ -35,21 +34,9 @@ import heroPortrait from '../../assets/hero-portrait.svg';
       height={480}
       loading="eager"
       fetchpriority="high"
-      class="h-[calc(100dvh-12rem)] w-auto max-w-[36vw] object-cover"
+      class="h-[calc(100dvh-8rem)] w-auto max-w-[38vw] object-cover"
     />
   </div>
 </section>
 
-<style>
-  .hero-content-grid {
-    display: grid;
-    grid-template-columns: var(--label-col-width) minmax(0, 1fr);
-    gap: 2rem;
-    align-items: start;
-  }
-  @media (max-width: 640px) {
-    .hero-content-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+

@@ -3,11 +3,13 @@ import { projects } from '../../data/projects';
 import ProjectCard from './ProjectCard.astro';
 ---
 
-<section id="projects" aria-labelledby="projects-heading" class="py-section">
-  <div class="mb-16">
-    <h2 id="projects-heading" class="font-display text-hero tracking-tightest pl-[4vw]">Selected Works</h2>
+<section id="projects" aria-labelledby="projects-heading" class="py-32 md:py-48">
+  <div class="mb-20 md:mb-28">
+    <h2 id="projects-heading" class="reveal font-display font-semibold text-[clamp(3.5rem,11.5vw,179.194px)] tracking-[-0.04em] leading-[0.88] text-text-primary">
+      Selected Works
+    </h2>
   </div>
-  <div class="reveal-group grid gap-6 md:grid-cols-2">
+  <div class="reveal-group grid gap-8 lg:grid-cols-2">
     {projects.map((p) => <ProjectCard project={p} />)}
   </div>
 </section>

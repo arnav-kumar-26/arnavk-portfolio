@@ -3,14 +3,16 @@ import { skills } from '../../data/skills';
 import SkillPill from './SkillPill.astro';
 ---
 
-<section id="skills" aria-labelledby="skills-heading" class="pt-section pb-[var(--section-rhythm-lg)]">
-  <div class="mb-16">
-    <h2 id="skills-heading" class="reveal font-display text-hero tracking-tightest pl-[4vw]">Skills</h2>
+<section id="skills" aria-labelledby="skills-heading" class="pt-32 md:pt-48 pb-56 md:pb-72 lg:pb-80">
+  <div class="mb-20 md:mb-28">
+    <h2 id="skills-heading" class="reveal font-display font-semibold text-[clamp(3.5rem,11.5vw,179.194px)] tracking-[-0.04em] leading-[0.88] text-text-primary">
+      Skills
+    </h2>
   </div>
-  <div class="grid gap-x-12 gap-y-10 md:grid-cols-3">
+  <div class="grid gap-x-12 gap-y-12 md:grid-cols-3">
     {skills.map((cat) => (
-      <div class="space-y-3">
-        <h3 class="font-mono text-body uppercase tracking-widest text-text-primary">{cat.category}</h3>
+      <div class="space-y-4">
+        <h3 class="font-mono text-sm uppercase tracking-widest text-text-muted">{cat.category}</h3>
         <div class="flex flex-wrap gap-3">
           {cat.items.map((item) => <SkillPill label={item} />)}
         </div>

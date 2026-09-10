@@ -27,6 +27,7 @@
   --font-size-xs: 15px;
   --font-size-sm: 16px;
   --font-size-base: 18px;
+  --font-size-body-swiss: 23.04px;
   --font-size-lg: 24px;
   --font-size-xl: 28px;
   --font-size-2xl: 32px;
@@ -36,6 +37,7 @@
   --font-size-6xl: 64px;
   --font-size-7xl: 80px;
   --font-size-display: 140px;
+  --font-size-section-title: 179.194px;
 
   /* Font Weights */
   --font-weight-regular: 400;
@@ -45,16 +47,19 @@
   --space-xxs: 4px;
   --space-xs: 8px;
   --space-sm: 12px;
-  --space-md: 32px;
+  --space-md: 24px;
   --space-xxl: 128px;
 
   /* Border Radius */
   --radius-sm: 5px;
 
-  /* Viewport Layout Margins */
+  /* Viewport Layout Margins & Grid (Swiss 8-column spec) */
   --site-padding-desktop: 48px;
   --site-padding-tablet: 32px;
   --site-padding-mobile: 16px;
+  --grid-columns: 8;
+  --grid-gap: 24px;
+  --gutter-width: 48px;
 
   /* Layout Constraints */
   --container-max-width: 1920px;
@@ -66,8 +71,6 @@
   --dur-base: 350ms;
   --dur-entrance: 600ms;
   --stagger: 150ms;
-  --grid-columns: 6;
-  --gutter-width: 2rem;
   --section-rhythm: 14rem;
   --section-rhythm-lg: 18rem;
   --label-col-width: 10rem;

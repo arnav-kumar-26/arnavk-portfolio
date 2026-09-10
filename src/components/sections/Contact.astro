@@ -6,62 +6,71 @@ const hasFormspree = Boolean(formspreeId);
 const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefined;
 ---
 
-<section id="contact" aria-labelledby="contact-heading" class="py-56 md:py-72 min-h-[60vh] contact-warm text-text-inverse w-[100vw] max-w-[100vw] ml-[calc(50%-50vw)] mr-[calc(50%-50vw)] px-4 md:px-8 lg:px-12">
-  <div class="mx-auto max-w-7xl grid gap-8 md:grid-cols-2 md:items-start">
-    <h2 id="contact-heading" class="reveal font-display text-h2 tracking-tightest text-text-inverse">Let's Connect</h2>
+<section id="contact" aria-labelledby="contact-heading" class="py-64 md:py-80 lg:py-96 min-h-[85vh] contact-warm text-white w-[100vw] max-w-[100vw] ml-[calc(50%-50vw)] mr-[calc(50%-50vw)] px-6 md:px-12 flex flex-col justify-center">
+  <div class="w-full grid gap-12 md:grid-cols-8 md:gap-6 md:items-start">
+    <div class="md:col-start-1 md:col-span-4">
+      <h2 id="contact-heading" class="reveal font-display text-[clamp(3.5rem,8vw,110px)] font-semibold tracking-[-0.04em] leading-[0.92] text-white">
+        Let's Connect
+      </h2>
+    </div>
 
-    {hasFormspree ? (
-      <form action={action} method="POST" class="space-y-4">
-        <div class="space-y-1">
-          <label for="contact-name" class="font-mono text-label uppercase tracking-widest text-text-inverse-muted">Name</label>
-          <input id="contact-name" name="name" type="text" required autocomplete="name" class="w-full border border-border-hairline-inverse bg-transparent px-3 py-2 font-mono text-body text-text-inverse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse" />
-        </div>
-        <div class="space-y-1">
-          <label for="contact-email" class="font-mono text-label uppercase tracking-widest text-text-inverse-muted">Email</label>
-          <input id="contact-email" name="email" type="email" required autocomplete="email" class="w-full border border-border-hairline-inverse bg-transparent px-3 py-2 font-mono text-body text-text-inverse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse" />
-        </div>
-        <div class="space-y-1">
-          <label for="contact-message" class="font-mono text-label uppercase tracking-widest text-text-inverse-muted">Message</label>
-          <textarea id="contact-message" name="message" rows={4} required class="w-full border border-border-hairline-inverse bg-transparent px-3 py-2 font-mono text-body text-text-inverse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-text-inverse"></textarea>
-        </div>
-        <Button>Send Message</Button>
-        <p aria-live="polite" class="font-mono text-body text-text-inverse-muted min-h-[1.5rem]" data-form-status></p>
-      </form>
-      <script>
-        const form = document.querySelector('#contact form') as HTMLFormElement | null;
-        const status = document.querySelector('[data-form-status]');
-        if (form && status) {
-          form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
-            try {
-              const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-              if (res.ok) {
-                status.textContent = 'Thanks — message sent!';
-                form.reset();
-              } else {
-                status.textContent = 'Something went wrong — please email directly.';
+    <div class="md:col-start-5 md:col-span-4 space-y-8">
+      {hasFormspree ? (
+        <form action={action} method="POST" class="space-y-6">
+          <div class="space-y-2">
+            <label for="contact-name" class="font-mono text-xs uppercase tracking-widest text-white/70">Name</label>
+            <input id="contact-name" name="name" type="text" required autocomplete="name" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" />
+          </div>
+          <div class="space-y-2">
+            <label for="contact-email" class="font-mono text-xs uppercase tracking-widest text-white/70">Email</label>
+            <input id="contact-email" name="email" type="email" required autocomplete="email" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" />
+          </div>
+          <div class="space-y-2">
+            <label for="contact-message" class="font-mono text-xs uppercase tracking-widest text-white/70">Message</label>
+            <textarea id="contact-message" name="message" rows={4} required class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"></textarea>
+          </div>
+          <Button>Send Message</Button>
+          <p aria-live="polite" class="font-mono text-[23.04px] text-white/70 min-h-[1.5rem]" data-form-status></p>
+        </form>
+        <script>
+          const form = document.querySelector('#contact form') as HTMLFormElement | null;
+          const status = document.querySelector('[data-form-status]');
+          if (form && status) {
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const data = new FormData(form);
+              try {
+                const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+                if (res.ok) {
+                  status.textContent = 'Thanks — message sent!';
+                  form.reset();
+                } else {
+                  status.textContent = 'Something went wrong — please email directly.';
+                }
+              } catch {
+                status.textContent = 'Network error — please email directly.';
               }
-            } catch {
-              status.textContent = 'Network error — please email directly.';
-            }
-          });
-        }
-      </script>
-    ) : (
-      <div class="space-y-4">
-        <p class="font-display text-body text-text-inverse-muted">Available for internships and collaborations. Reach out directly via email.</p>
-        <a href="mailto:hello@example.com" class="link-underline font-mono text-body uppercase tracking-widest text-text-inverse w-fit">Contact ↗</a>
-      </div>
-    )}
+            });
+          }
+        </script>
+      ) : (
+        <div class="space-y-8">
+          <p class="font-display text-[23.04px] leading-[1.6] text-white">
+            Available for internships and collaborations. Reach out directly via email to explore new ideas or build something remarkable together.
+          </p>
+          <a href="mailto:hello@example.com" class="link-underline font-mono text-[23.04px] uppercase tracking-widest text-white block w-fit">
+            CONTACT ↗
+          </a>
+        </div>
+      )}
+    </div>
   </div>
 </section>
 
 <style>
-  /* Interim photographic placeholder (reference has a full-bleed photo here):
-     warm wash over the dark base; swap background-image for the photo when available. */
+  /* Rich warm photographic dark background matching reference */
   .contact-warm {
-    background-color: theme('colors.background.dark');
-    background-image: linear-gradient(120deg, color-mix(in srgb, theme('colors.accent.warm') 45%, transparent), transparent 65%);
+    background-color: #12100e;
+    background-image: linear-gradient(125deg, rgba(201, 124, 75, 0.35) 0%, rgba(15, 15, 15, 0.95) 70%);
   }
 </style>
