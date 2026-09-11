@@ -107,14 +107,13 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     mix-blend-mode: difference;
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 0 0px #ffffff;
     transition: opacity var(--dur-fast) var(--ease-signature),
-                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .site-cursor.cursor-hover {
-    transform: translate(-50%, -50%) scale(1.3);
-    border-width: 4.5px;
+    box-shadow: inset 0 0 0 4px #ffffff;
   }
   @media (pointer: fine) {
     body {

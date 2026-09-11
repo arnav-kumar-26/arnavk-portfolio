@@ -11,7 +11,7 @@ const sorted = [...experience].sort((a, b) => b.startDate.localeCompare(a.startD
       Experience
     </h2>
   </div>
-  <div class="reveal-group">
+  <div class="reveal-group space-y-7 md:space-y-10">
     {sorted.map((e) => <ExperienceRow entry={e} />)}
   </div>
 </section>
