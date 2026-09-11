@@ -1,7 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
 import { Image } from 'astro:assets';
-import heroPortrait from '../../assets/hero-portrait.svg';
+import heroPortrait from '../../assets/portrait.png';
 ---
 
 <section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[calc(100vh-5rem)] flex-col justify-between overflow-hidden">
@@ -42,8 +42,8 @@ import heroPortrait from '../../assets/hero-portrait.svg';
         <Image
           src={heroPortrait}
           alt="Portrait of Arnav Kumar"
-          width={600}
-          height={663}
+          width={1084}
+          height={1192}
           loading="eager"
           fetchpriority="high"
           class="h-[663px] w-full object-cover object-center"

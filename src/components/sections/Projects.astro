@@ -1,6 +1,16 @@
 ---
+import { getImage } from 'astro:assets';
 import { projects } from '../../data/projects';
 import ProjectCard from './ProjectCard.astro';
+import pool1 from '../../assets/project1.png';
+import pool2 from '../../assets/project2.png';
+import pool3 from '../../assets/project3.png';
+import pool4 from '../../assets/project4.png';
+
+// Optimized at build time; assigned distinct-random per card client-side.
+const coverPool = await Promise.all(
+  [pool1, pool2, pool3, pool4].map(async (src) => (await getImage({ src, width: 1200, format: 'webp' })).src)
+);
 ---
 
 <section id="projects" aria-labelledby="projects-heading" class="py-32 md:py-40">
@@ -9,7 +19,23 @@ import ProjectCard from './ProjectCard.astro';
       Selected Works
     </h2>
   </div>
-  <div class="reveal-group grid gap-6 lg:grid-cols-2">
+  <div class="reveal-group grid gap-6 lg:grid-cols-2" data-cover-pool={JSON.stringify(coverPool)}>
     {projects.map((p) => <ProjectCard project={p} />)}
   </div>
 </section>
+
+<script>
+  // Distinct shuffle: each card gets a different pool image per page load.
+  const grid = document.querySelector('[data-cover-pool]');
+  if (grid instanceof HTMLElement && grid.dataset.coverPool) {
+    const pool = JSON.parse(grid.dataset.coverPool) as string[];
+    const imgs = [...grid.querySelectorAll('img[data-cover-img]')];
+    const picks = [...pool].sort(() => Math.random() - 0.5).slice(0, imgs.length);
+    imgs.forEach((img, i) => {
+      if (picks[i]) {
+        img.removeAttribute('srcset');
+        img.setAttribute('src', picks[i]);
+      }
+    });
+  }
+</script>

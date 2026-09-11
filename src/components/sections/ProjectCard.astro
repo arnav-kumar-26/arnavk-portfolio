@@ -23,7 +23,7 @@ const cover = coverMap[project.coverImage] ?? miraCover;
     <div class="relative">
       <div class="layer-back absolute inset-0 translate-x-2 translate-y-2 bg-accent"></div>
       <div class="layer-front relative bg-background overflow-hidden aspect-[16/9] max-h-[360px] w-full border border-border-hairline">
-        <Image src={cover} alt={`${project.title} cover`} width={800} height={450} loading="lazy" class="h-full w-full object-cover object-center" />
+        <Image src={cover} alt={`${project.title} cover`} width={800} height={450} loading="lazy" data-cover-img class="h-full w-full object-cover object-center" />
       </div>
     </div>
     <div class="pt-8 space-y-4">
