@@ -1,0 +1,13 @@
+---
+---
+
+<script>
+  // Random Connect background, one pool image per page load.
+  // Own component: Contact.astro cannot host this (see note in Projects.astro).
+  const connectSection = document.querySelector('#contact[data-connect-pool]');
+  if (connectSection instanceof HTMLElement && connectSection.dataset.connectPool) {
+    const connectPool = JSON.parse(connectSection.dataset.connectPool) as string[];
+    const pick = connectPool[Math.floor(Math.random() * connectPool.length)];
+    connectSection.style.setProperty('--connect-photo', 'url("' + pick + '")');
+  }
+</script>
