@@ -25,7 +25,6 @@ export const skills: SkillCategory[] = [
     category: 'Soft Skills',
     items: [
       'Analytical & Problem-Solving',
-      'Written & Verbal Communication',
       'Cross-Functional & Cross-Team Collaboration',
       'Adaptability Across Platforms',
       'Independent Judgment & Autonomy',

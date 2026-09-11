@@ -4,7 +4,7 @@ export interface NavLink {
 }
 
 export interface SocialLink {
-  platform: 'GitHub' | 'LinkedIn' | 'Email' | 'X';
+  platform: 'GitHub' | 'LinkedIn' | 'Email' | 'X' | 'WhatsApp';
   href: string;
   label: string;
 }
