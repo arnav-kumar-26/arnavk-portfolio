@@ -4,14 +4,18 @@ import { Image } from 'astro:assets';
 import heroPortrait from '../../assets/hero-portrait.svg';
 ---
 
-<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[calc(100vh-5rem)] max-h-[860px] flex-col justify-between overflow-hidden">
-  <div class="flex flex-col justify-start pt-16 md:pt-20">
-    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display font-black text-[clamp(5.5rem,14vw,220px)] tracking-[-0.05em] leading-[0.88] text-text-primary p-2">
-      Arnav
+<section id="hero" aria-labelledby="hero-heading" class="relative flex min-h-[calc(100vh-5rem)] flex-col justify-between overflow-hidden">
+  <!-- Top content: shifted down by +70px (pt-[134px] md:pt-[150px]) -->
+  <div class="flex flex-col justify-start pt-[134px] md:pt-[150px]">
+    <!-- Heading: "Arnav Kumar", max-width constrained to Cols 1-5 to wrap if needed and never overlap image in Cols 6-8 -->
+    <h1 id="hero-heading" class="reveal-hero relative z-10 font-display font-black text-[clamp(4.5rem,11.5vw,190px)] tracking-[-0.05em] leading-[0.88] text-text-primary p-2 max-w-full md:max-w-[58%] break-words">
+      Arnav Kumar
     </h1>
-    <div class="mt-6 flex flex-col md:grid md:grid-cols-8 md:gap-6 items-start">
+
+    <!-- Subtext: positioned exactly 100px below the Arnav Kumar text block -->
+    <div class="mt-[100px] flex flex-col md:grid md:grid-cols-8 md:gap-6 items-start">
       <div class="md:col-start-2 md:col-span-1 p-2">
-        <span class="reveal relative z-10 font-mono text-sm uppercase tracking-widest text-text-muted block pt-1" style="animation-delay: calc(var(--stagger) * 1)" aria-hidden="true">[Intro]</span>
+        <span class="reveal relative z-10 font-mono text-[18.8px] uppercase tracking-widest text-text-muted block pt-1" style="animation-delay: calc(var(--stagger) * 1)" aria-hidden="true">[Intro]</span>
       </div>
       <div class="mt-2 md:mt-0 md:col-start-3 md:col-span-4 lg:col-span-3 p-2">
         <p class="reveal relative z-10 font-display text-[23.04px] leading-[1.5] text-[#1e1e1f]" style="animation-delay: calc(var(--stagger) * 2)">
@@ -21,8 +25,8 @@ import heroPortrait from '../../assets/hero-portrait.svg';
     </div>
   </div>
 
-  <!-- Action buttons: centered in Column 1 and Column 2 -->
-  <div class="relative z-10 w-full grid grid-cols-8 gap-6 pb-8 pt-4">
+  <!-- Action buttons: LOCKED in current exact position, centered in Column 1 and Column 2 -->
+  <div class="reveal relative z-10 w-full grid grid-cols-8 gap-6 pb-8 pt-4" style="animation-delay: calc(var(--stagger) * 3)">
     <div class="col-start-1 col-span-1 flex justify-center items-center">
       <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
     </div>
@@ -31,13 +35,13 @@ import heroPortrait from '../../assets/hero-portrait.svg';
     </div>
   </div>
 
-  <!-- Portrait image: spans across last 3 columns (Cols 6, 7, 8) with explicit 663px height -->
-  <div class="pointer-events-none absolute inset-x-0 top-8 md:top-12 z-0 hidden sm:block">
+  <!-- Portrait image: shifted down by +70px (top-[102px] md:top-[118px]), spans Cols 6, 7, 8 with explicit 663px height -->
+  <div class="reveal pointer-events-none absolute inset-x-0 top-[102px] md:top-[118px] z-0 hidden sm:block" style="animation-delay: calc(var(--stagger) * 1)">
     <div class="grid grid-cols-8 gap-6 w-full">
       <div class="col-start-6 col-span-3 flex justify-end">
         <Image
           src={heroPortrait}
-          alt="Portrait of Arnav"
+          alt="Portrait of Arnav Kumar"
           width={600}
           height={663}
           loading="eager"

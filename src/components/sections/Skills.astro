@@ -9,12 +9,12 @@ import SkillPill from './SkillPill.astro';
       Skills
     </h2>
   </div>
-  <div class="grid gap-x-6 gap-y-12 md:grid-cols-8">
+  <div class="reveal-group grid gap-x-6 gap-y-12 md:grid-cols-8">
     {skills.map((cat, idx) => {
       const colStartClass = (idx % 3 === 0) ? 'md:col-start-2' : (idx % 3 === 1) ? 'md:col-start-4' : 'md:col-start-6';
       return (
         <div class={`${colStartClass} md:col-span-2 space-y-4 p-2`}>
-          <h3 class="font-mono text-sm uppercase tracking-widest text-text-muted p-2">{cat.category}</h3>
+          <h3 class="font-mono text-[18.8px] uppercase tracking-widest text-text-muted p-2">{cat.category}</h3>
           <div class="flex flex-wrap gap-3 p-2">
             {cat.items.map((item) => <SkillPill label={item} />)}
           </div>

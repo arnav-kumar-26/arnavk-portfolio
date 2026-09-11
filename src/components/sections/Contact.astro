@@ -16,20 +16,22 @@ const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefine
 
     <div class="md:col-start-5 md:col-span-4 space-y-8">
       {hasFormspree ? (
-        <form action={action} method="POST" class="space-y-6">
+        <form action={action} method="POST" class="reveal-group space-y-6">
           <div class="space-y-2">
             <label for="contact-name" class="font-mono text-xs uppercase tracking-widest text-white/70">Name</label>
-            <input id="contact-name" name="name" type="text" required autocomplete="name" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" />
+            <input id="contact-name" name="name" type="text" required autocomplete="name" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-350 ease-signature hover:border-white/40 focus:border-white focus:bg-white/5" />
           </div>
           <div class="space-y-2">
             <label for="contact-email" class="font-mono text-xs uppercase tracking-widest text-white/70">Email</label>
-            <input id="contact-email" name="email" type="email" required autocomplete="email" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" />
+            <input id="contact-email" name="email" type="email" required autocomplete="email" class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-350 ease-signature hover:border-white/40 focus:border-white focus:bg-white/5" />
           </div>
           <div class="space-y-2">
             <label for="contact-message" class="font-mono text-xs uppercase tracking-widest text-white/70">Message</label>
-            <textarea id="contact-message" name="message" rows={4} required class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"></textarea>
+            <textarea id="contact-message" name="message" rows={4} required class="w-full border border-white/20 bg-transparent px-4 py-3 font-mono text-[23.04px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-350 ease-signature hover:border-white/40 focus:border-white focus:bg-white/5"></textarea>
           </div>
-          <Button>Send Message</Button>
+          <div>
+            <Button>Send Message</Button>
+          </div>
           <p aria-live="polite" class="font-mono text-[23.04px] text-white/70 min-h-[1.5rem]" data-form-status></p>
         </form>
         <script>
@@ -54,11 +56,11 @@ const action = hasFormspree ? `https://formspree.io/f/${formspreeId}` : undefine
           }
         </script>
       ) : (
-        <div class="space-y-8">
+        <div class="reveal-group space-y-8">
           <p class="font-display text-[23.04px] leading-[1.6] text-white">
             Available for internships and collaborations. Reach out directly via email to explore new ideas or build something remarkable together.
           </p>
-          <a href="mailto:hello@example.com" class="link-underline font-mono text-[23.04px] uppercase tracking-widest text-white block w-fit">
+          <a href="mailto:hello@example.com" class="link-underline font-mono text-[23.04px] uppercase tracking-widest text-white block w-fit transition-colors duration-350 ease-signature">
             CONTACT ↗
           </a>
         </div>

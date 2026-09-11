@@ -41,28 +41,46 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     </script>
     <span class="site-cursor rounded-pill" aria-hidden="true"></span>
     <script>
-      // Site-wide custom cursor-circle (moved from Hero-scoped per TASK.md Task 5):
-      // single dot + document-level mousemove listener, fine-pointer only,
-      // inert under prefers-reduced-motion.
-      const dot = document.querySelector('.site-cursor');
+      // Enhanced custom cursor:
+      // Fine-pointer only, inert under prefers-reduced-motion.
+      // Immediate mouse tracking via left/top (0 latency).
+      // Smooth scale & border-width expansion on interactive elements.
+      // Seamless contrast adaptation via mix-blend-mode: difference.
+      const dot = document.querySelector<HTMLElement>('.site-cursor');
       const finePointer = window.matchMedia('(pointer: fine)').matches;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (dot instanceof HTMLElement && finePointer && !reducedMotion) {
+
+      if (dot && finePointer && !reducedMotion) {
+        let isHovered = false;
+
         document.addEventListener(
           'mousemove',
           (e) => {
             dot.style.opacity = '1';
-            dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-            
-            const target = document.elementFromPoint(e.clientX, e.clientY);
-            if (target && (target.closest('#contact') || target.closest('footer') || target.closest('.bg-background-dark') || target.closest('.contact-warm'))) {
-              dot.classList.add('cursor-inverted');
-            } else {
-              dot.classList.remove('cursor-inverted');
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+
+            const target = e.target as HTMLElement | null;
+            const interactive = target
+              ? target.closest('a, button, [role="button"], input, textarea, select, label, .project-card, .skill-pill, [data-interactive]')
+              : null;
+
+            if (interactive && !isHovered) {
+              isHovered = true;
+              dot.classList.add('cursor-hover');
+            } else if (!interactive && isHovered) {
+              isHovered = false;
+              dot.classList.remove('cursor-hover');
             }
           },
           { passive: true }
         );
+
+        document.addEventListener('mouseleave', () => {
+          dot.style.opacity = '0';
+          isHovered = false;
+          dot.classList.remove('cursor-hover');
+        });
       }
     </script>
   </body>
@@ -74,23 +92,29 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     min-height: 50vh;
   }
 
-  /* Site-wide cursor-circle (see script above) */
+  /* Enhanced site-wide cursor-circle */
   .site-cursor {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 60;
-    width: 2rem;
-    height: 2rem;
-    margin: -1rem 0 0 -1rem;
-    border: 1px solid #1e1e1f;
+    z-index: 100;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    border: 2.5px solid #ffffff;
+    background-color: transparent;
+    mix-blend-mode: difference;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--dur-fast) var(--ease-signature), border-color var(--dur-fast) var(--ease-signature);
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity var(--dur-fast) var(--ease-signature),
+                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .site-cursor.cursor-inverted {
-    border-color: #ffffff !important;
+  .site-cursor.cursor-hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    border-width: 4.5px;
   }
   @media (pointer: fine) {
     body {

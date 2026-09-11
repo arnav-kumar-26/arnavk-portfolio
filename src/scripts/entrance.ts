@@ -1,5 +1,5 @@
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const revealEls = document.querySelectorAll<HTMLElement>('.reveal:not(.no-reveal), .reveal-group > *:not(.no-reveal)');
+  const revealEls = document.querySelectorAll<HTMLElement>('.reveal:not(.no-reveal), .reveal-hero:not(.no-reveal), .reveal-group > *:not(.no-reveal)');
 
   // start hidden until observed
   revealEls.forEach((el) => {

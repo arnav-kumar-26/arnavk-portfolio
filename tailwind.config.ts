@@ -44,8 +44,10 @@ export default {
         h6: ['clamp(1rem, 0.5vw + 0.875rem, var(--font-size-base))', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
         body: ['var(--font-size-body-swiss)', { lineHeight: '1.55', letterSpacing: '-0.02em' }],
         'body-base': ['var(--font-size-base)', { lineHeight: '1.65' }],
-        label: ['var(--font-size-xs)', { lineHeight: '1', letterSpacing: '0.08em', fontWeight: '500' }],
-        xs: ['var(--font-size-xs)', { lineHeight: '1', letterSpacing: '0.08em', fontWeight: '500' }],
+        label: ['var(--font-size-xs)', { lineHeight: '1.2', letterSpacing: '0.08em', fontWeight: '500' }],
+        xs: ['var(--font-size-xs)', { lineHeight: '1.2', letterSpacing: '0.08em', fontWeight: '500' }],
+        sm: ['var(--font-size-sm)', { lineHeight: '1.2', letterSpacing: '0.08em', fontWeight: '500' }],
+        small: ['18.8px', { lineHeight: '1.2', letterSpacing: '0.08em', fontWeight: '500' }],
         nav: ['clamp(1.125rem, 0.5vw + 1rem, var(--font-size-lg))', { lineHeight: '1.2' }],
       },
       borderRadius: {
