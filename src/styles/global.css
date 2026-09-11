@@ -108,6 +108,37 @@
   }
 }
 
+/* Site-wide custom cursor: native pointer hidden so only the circle shows.
+   Unscoped on purpose — BaseLayout's scoped <style> cannot reach these
+   elements (Astro appends a scope id to every selector it doesn't own). */
+@media (pointer: fine) {
+  body,
+  body a,
+  body button,
+  body input,
+  body select,
+  body textarea,
+  body label,
+  body [role='button'],
+  body .project-card,
+  body .skill-pill,
+  body [data-interactive] {
+    cursor: none;
+  }
+}
+@media (pointer: fine) and (prefers-reduced-motion: reduce) {
+  body,
+  body a,
+  body button,
+  body input,
+  body select,
+  body textarea,
+  body label,
+  body [role='button'] {
+    cursor: auto;
+  }
+}
+
 /* Reusable motion utilities — driven exclusively by --ease-signature / --dur-* tokens */
 .link-underline {
   position: relative;

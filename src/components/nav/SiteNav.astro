@@ -8,18 +8,19 @@ interface NavItem {
 
 const defaultNav: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Work', href: '#projects' },
-  { label: 'Writing', href: '/writing' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Works', href: '#projects' },
+  { label: 'Writing', href: '/coming-soon' },
 ];
 
 const { items = defaultNav } = Astro.props as { items?: NavItem[] };
 ---
 
 <nav class="site-nav sticky top-0 z-40 flex w-full items-center justify-between bg-transparent px-4 py-4 border-b border-transparent transition-colors duration-350 ease-signature md:px-12" aria-label="Primary">
-  <a href="/" class="font-display text-h3 text-text-primary focus-visible:outline-none">
-    Arnav
+  <a href="/" class="font-mono text-nav uppercase tracking-widest text-text-primary focus-visible:outline-none">
+    ARNAV
   </a>
-  <div class="flex min-w-0 flex-wrap items-center justify-end gap-4 md:gap-6">
+  <div class="flex min-w-0 flex-nowrap items-center justify-end gap-4 whitespace-nowrap md:gap-6">
     {
       items.map((item, i) => (
         <>

@@ -92,7 +92,8 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     min-height: 50vh;
   }
 
-  /* Enhanced site-wide cursor-circle */
+  /* Cursor-circle shape only (hide/show lives in global.css —
+     scoped selectors can't reach body-level elements) */
   .site-cursor {
     display: none;
     position: fixed;
@@ -116,34 +117,11 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     box-shadow: inset 0 0 0 4px #ffffff;
   }
   @media (pointer: fine) {
-    body,
-    body a,
-    body button,
-    body input,
-    body select,
-    body textarea,
-    body label,
-    body [role="button"],
-    body .project-card,
-    body .skill-pill,
-    body [data-interactive] {
-      cursor: none;
-    }
     body .site-cursor {
       display: block;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    body,
-    body a,
-    body button,
-    body input,
-    body select,
-    body textarea,
-    body label,
-    body [role="button"] {
-      cursor: auto;
-    }
     body .site-cursor {
       display: none;
     }
