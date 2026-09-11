@@ -116,7 +116,17 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     box-shadow: inset 0 0 0 4px #ffffff;
   }
   @media (pointer: fine) {
-    body {
+    body,
+    body a,
+    body button,
+    body input,
+    body select,
+    body textarea,
+    body label,
+    body [role="button"],
+    body .project-card,
+    body .skill-pill,
+    body [data-interactive] {
       cursor: none;
     }
     body .site-cursor {
@@ -124,7 +134,14 @@ const canonical = canonicalProp ?? (Astro.site ? new URL(Astro.url.pathname, Ast
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    body {
+    body,
+    body a,
+    body button,
+    body input,
+    body select,
+    body textarea,
+    body label,
+    body [role="button"] {
       cursor: auto;
     }
     body .site-cursor {
