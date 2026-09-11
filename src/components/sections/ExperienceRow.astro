@@ -11,8 +11,7 @@ const { entry } = Astro.props as Props;
 // never shifts with the builder's local timezone.
 const formatMonthYear = (iso: string) => {
   const d = new Date(iso);
-  const month = d.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
-  return `${month}, ${d.getUTCFullYear()}`;
+  return `${String(d.getUTCMonth() + 1).padStart(2, '0')}/${d.getUTCFullYear()}`;
 };
 
 const formatEnd = (end: string) => (end === 'present' ? 'Present' : formatMonthYear(end));
