@@ -12,14 +12,14 @@ const sameAs = socialLinks.map((s) => s.href);
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Arnav',
-  jobTitle: 'Developer',
+  name: 'Arnav Kumar',
+  jobTitle: 'Software Developer',
   url: Astro.site?.toString() ?? Astro.url.href,
   sameAs,
 };
 ---
 
-<BaseLayout title="Portfolio — Arnav" description="Portfolio — developer, Astro static-first, FastAPI + Expo, available for internships.">
+<BaseLayout title="Portfolio — Arnav Kumar" description="Portfolio — Software Developer creating unique visual experiences and full-stack applications.">
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   <Hero />
   <About />
