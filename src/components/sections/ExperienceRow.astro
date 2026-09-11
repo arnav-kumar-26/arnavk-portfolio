@@ -9,8 +9,11 @@ const { entry } = Astro.props as Props;
 
 // Date-only strings parse as UTC midnight — format in UTC so the month
 // never shifts with the builder's local timezone.
-const formatMonthYear = (iso: string) =>
-  new Date(iso).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const formatMonthYear = (iso: string) => {
+  const d = new Date(iso);
+  const month = d.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+  return `${month}, ${d.getUTCFullYear()}`;
+};
 
 const formatEnd = (end: string) => (end === 'present' ? 'Present' : formatMonthYear(end));
 const dateRange = `${formatMonthYear(entry.startDate)} — ${formatEnd(entry.endDate)}`;
@@ -24,7 +27,7 @@ const dateRange = `${formatMonthYear(entry.startDate)} — ${formatEnd(entry.end
   </div>
 
   <!-- Job Title: spans across Columns 3 to 7 -->
-  <div class="md:col-start-3 md:col-span-5 md:row-start-1 mb-6 md:mb-[17px] p-2">
+  <div class="md:col-start-3 md:col-span-5 md:row-start-1 mb-6 md:mb-4 p-2">
     <h3 class="font-display font-medium text-[36px] text-text-primary tracking-tight leading-tight">{entry.company} — {entry.role}</h3>
   </div>
 

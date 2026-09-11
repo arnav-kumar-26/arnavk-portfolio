@@ -1,14 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Eyebrow from '../components/ui/Eyebrow.astro';
 ---
 
 <BaseLayout title="Coming Soon — Arnav" description="Something is on its way — check back shortly.">
-  <section aria-labelledby="coming-soon-heading" class="py-section">
-    <div class="mb-8 flex items-baseline gap-4">
-      <Eyebrow label="WRITING" />
-      <h1 id="coming-soon-heading" class="font-display text-h2 tracking-tightest">Coming Soon</h1>
-    </div>
+  <section aria-labelledby="coming-soon-heading" class="flex min-h-[calc(100vh-5rem)] flex-col justify-center">
+    <h1 id="coming-soon-heading" class="font-display text-h2 tracking-tightest">Coming Soon</h1>
     <p class="font-mono text-body text-text-muted max-w-[32ch]">I'm writing something worth reading — check back shortly.</p>
     <p class="mt-8">
       <a href="/" class="link-underline font-mono text-label uppercase tracking-widest text-text-primary w-fit">← Back home</a>
